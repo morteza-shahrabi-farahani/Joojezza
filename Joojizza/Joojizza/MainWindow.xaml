@@ -1,0 +1,22 @@
+﻿<Window x:Class="Joojizza.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Joojizza"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="139,73,0,0" TextWrapping="Wrap" Text="Joojizza" VerticalAlignment="Top" Height="76" Width="261" FontFamily="Kristen ITC" FontSize="48" FontWeight="Bold" TextAlignment="Center" />
+        <Image HorizontalAlignment="Left" Height="184" Margin="400,27,0,0" VerticalAlignment="Top" Width="349" Source="Untitled.png"/>
+        <Button Content="User" HorizontalAlignment="Left" Margin="318,216,0,0" VerticalAlignment="Top" Width="149" Style="{StaticResource RoundButton}" Height="50" MouseMove="Button_MouseMove" Name="user">
+            <Button.CacheMode>
+                <BitmapCache/>
+            </Button.CacheMode>
+        </Button>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="230,301,0,0" VerticalAlignment="Top" Width="75" Height="42"/>
+        
+
+
+    </Grid>
+</Window>
