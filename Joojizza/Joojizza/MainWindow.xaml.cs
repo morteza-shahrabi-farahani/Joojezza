@@ -24,10 +24,5 @@ namespace Joojizza
         {
             InitializeComponent();
         }
-
-        private void Button_MouseMove(object sender, MouseEventArgs e)
-        {
-            User.
-        }
-    }
+    }  
 }
