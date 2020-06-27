@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Media;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Joojizza
 {
@@ -23,6 +11,12 @@ namespace Joojizza
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            SoundPlayer soundPlayer = new SoundPlayer(@"G:\works\university\AP\Joojizza\Joojizza\Joojizza\media.io_zapsplat_multimedia_button_click_fast_plastic_49161.wav");
+            soundPlayer.Play();
         }
     }  
 }

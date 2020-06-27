@@ -97,5 +97,20 @@
   <ItemGroup>
     <Resource Include="Untitled.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tiny Button Push-SoundBible.com-513260752.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media.io_household_bathroom_extractor_fan_switch_click.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media.io_zapsplat_multimedia_button_click_fast_plastic_49161.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media.io_transportation_car_seat_belt_click_lock_002.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button Push Sound-SoundBible.com-685166460.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
