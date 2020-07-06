@@ -32,16 +32,16 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="Register" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="107,-65,107,0" RenderTransformOrigin="0.572,-1.151" Height="24" Width="66"/>
             <StackPanel VerticalAlignment="Center" Margin="10,-39,10,-52" Height="331">
-                <TextBox materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5"></TextBox>
-                <TextBox materialDesign:HintAssist.Hint="Phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
-                <TextBox materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
-                <TextBox materialDesign:HintAssist.Hint="National ID" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
-                <PasswordBox materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="14" Height="41"></PasswordBox>
-                <PasswordBox materialDesign:HintAssist.Hint="Confirm Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="14" Height="41"></PasswordBox>
+                <TextBox x:Name="nameTxt" materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5"></TextBox>
+                <TextBox x:Name="phoneTxt" materialDesign:HintAssist.Hint="Phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
+                <TextBox x:Name="emailTxt" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
+                <TextBox x:Name="idTxt" materialDesign:HintAssist.Hint="National ID" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
+                <PasswordBox x:Name="passwordTxt" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="14" Height="41"></PasswordBox>
+                <PasswordBox x:Name="confirmTxt" materialDesign:HintAssist.Hint="Confirm Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="14" Height="41"></PasswordBox>
             </StackPanel>
         </Grid>
 
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="127,0,123,18" Width="150" Content="Register"></Button>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="127,0,123,18" Width="150" Content="Register" Click="Button_Click"></Button>
 
     </Grid>
 </Window>

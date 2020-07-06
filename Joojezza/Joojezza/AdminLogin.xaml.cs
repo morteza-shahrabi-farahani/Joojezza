@@ -31,14 +31,12 @@ namespace Joojizza
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
-            SqlCommand SqlCommand = new SqlCommand();
             SqlConnection.Open();
-            SqlCommand.Connection = SqlConnection;
-            SqlCommand.CommandText = "select * from Table";
+            SqlCommand SqlCommand = new SqlCommand("select * from [Table]", SqlConnection);
             SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
             if(sqlDataReader.Read())
             {
-                if(idTxt.Text == sqlDataReader["id"] && passwordTxt.Password == sqlDataReader["password"])
+                if(idTxt.Text == sqlDataReader[0].ToString() && passwordTxt.Password == sqlDataReader[1].ToString())
                 {
                     MessageBox.Show("Login successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
