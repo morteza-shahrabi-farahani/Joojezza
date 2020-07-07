@@ -20,28 +20,29 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Source="logo.png" VerticalAlignment="Top" Height="67" Margin="150,10,150,0"></Image>
-        <Rectangle Width="280" Height="380" Fill="White" RadiusX="15" RadiusY="15" VerticalAlignment="Bottom" Margin="60,0,60,32">
+        <Image Source="logo.png" VerticalAlignment="Top" Height="49" Margin="144,7,156,0"></Image>
+        <Rectangle Width="280" Height="414" Fill="White" RadiusX="15" RadiusY="15" VerticalAlignment="Bottom" Margin="60,0,60,22">
             <Rectangle.Effect>
                 <DropShadowEffect Direction="0" RenderingBias="Quality"/>
             </Rectangle.Effect>
         </Rectangle>
         <Grid Height="240" Width="280" VerticalAlignment="Bottom" Margin="0, 100">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="17*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Register" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="107,-65,107,0" RenderTransformOrigin="0.572,-1.151" Height="24" Width="66"/>
-            <StackPanel VerticalAlignment="Center" Margin="10,-39,10,-52" Height="331">
-                <TextBox x:Name="nameTxt" materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5"></TextBox>
-                <TextBox x:Name="phoneTxt" materialDesign:HintAssist.Hint="Phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
-                <TextBox x:Name="emailTxt" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
-                <TextBox x:Name="idTxt" materialDesign:HintAssist.Hint="National ID" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="14"></TextBox>
-                <PasswordBox x:Name="passwordTxt" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="14" Height="41"></PasswordBox>
-                <PasswordBox x:Name="confirmTxt" materialDesign:HintAssist.Hint="Confirm Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="14" Height="41"></PasswordBox>
+            <StackPanel VerticalAlignment="Center" Margin="10,-70,10,-42" Height="378" Grid.ColumnSpan="2">
+                <TextBox x:Name="nameTxt" materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="42" FontSize="13"/>
+                <TextBox x:Name="phoneTxt" materialDesign:HintAssist.Hint="Phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="13" Height="42"/>
+                <TextBox x:Name="emailTxt" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="13" Height="42"/>
+                <TextBox x:Name="idTxt" materialDesign:HintAssist.Hint="National ID" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="13" Height="42"/>
+                <TextBox x:Name="addressTxt" materialDesign:HintAssist.Hint="Address" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" FontSize="13" Height="42"/>
+                <PasswordBox x:Name="passwordTxt" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="13" Height="42"/>
+                <PasswordBox x:Name="confirmTxt" materialDesign:HintAssist.Hint="Confirm Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0, 5" FontSize="13" Height="42"/>
             </StackPanel>
         </Grid>
 
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="127,0,123,18" Width="150" Content="Register" Click="Button_Click"></Button>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="118,0,132,12" Width="150" Content="Register" Click="Button_Click"></Button>
 
     </Grid>
 </Window>

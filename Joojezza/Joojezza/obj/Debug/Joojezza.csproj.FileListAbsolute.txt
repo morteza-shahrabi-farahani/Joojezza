@@ -22,7 +22,6 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\AdminLogin.
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\MainWindow.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Page1.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\UserLogin.g.cs
-G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Window1.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\App.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza_MarkupCompile.cache
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza_MarkupCompile.lref
@@ -31,7 +30,6 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\AdminLogin.
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\MainWindow.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Page1.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\UserLogin.baml
-G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Window1.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza.g.resources
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza.Properties.Resources.resources
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojezza.csproj.GenerateResource.cache
@@ -44,3 +42,6 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\UserRegiste
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza_Content.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\bin\Debug\users.mdf
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\bin\Debug\users_log.ldf
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\UserPanel.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\UserPanel.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza.Form1.resources

@@ -38,7 +38,9 @@ namespace Joojizza
             {
                 if(idTxt.Text == sqlDataReader[0].ToString() && passwordTxt.Password == sqlDataReader[1].ToString())
                 {
-                    MessageBox.Show("Login successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    UserPanel userPanel = new UserPanel();
+                    userPanel.Show();
+                    this.Close();
                 }
                 else
                 {

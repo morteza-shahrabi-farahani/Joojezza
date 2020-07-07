@@ -43,9 +43,9 @@ namespace Joojizza
             SqlConnection.Open();
             SqlCommand SqlCommand = new SqlCommand("select * from [UserInformation]", SqlConnection);
             SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
-            if (sqlDataReader.Read())
+            while (sqlDataReader.Read())
             {
-                if (emailTxt.Text == sqlDataReader[0].ToString() && passwordTxt.Password == sqlDataReader[1].ToString())
+                if (emailTxt.Text == sqlDataReader["email"].ToString() && passwordTxt.Password == sqlDataReader["password"].ToString())
                 {
                     MessageBox.Show("Login successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
