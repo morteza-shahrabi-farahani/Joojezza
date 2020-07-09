@@ -29,7 +29,7 @@ namespace Joojizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (isValidMobileNumber(phoneTxt.Text.ToString()) && isValidEmail(emailTxt.Text.ToString()) && passwordTxt.Password.ToString() == confirmTxt.Password.ToString() && isValidName(nameTxt.Text) && isValidPassword(passwordTxt.Password.ToString()))
+            if (isValidMobileNumber(phoneTxt.Text.ToString()) && isValidEmail(emailTxt.Text.ToString()) && passwordTxt.Password.ToString() == confirmTxt.Password.ToString() && isValidName(nameTxt.Text) && isValidID(idTxt.Text) && isValidPassword(passwordTxt.Password.ToString()))
             { 
                 SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
                 sqlConnection.Open();
@@ -42,6 +42,10 @@ namespace Joojizza
                 sqlCommand.Parameters.Add("@password", passwordTxt.Password);
                 sqlCommand.ExecuteNonQuery();
                 sqlConnection.Close();
+
+                UserLogin userLogin = new UserLogin();
+                userLogin.Show();
+                this.Close();
             }
             else
             {
@@ -89,7 +93,7 @@ namespace Joojizza
         public static bool isValidName(string name)
         {
 
-            string strRegex = @"^[a-zA-Z]$";
+            string strRegex = @"^[a-zA-Z]+$";
             Regex regex = new Regex(strRegex);
             Match match = regex.Match(name);
             if(match.Success)
@@ -104,7 +108,7 @@ namespace Joojizza
 
         public static bool isValidPassword(string password)
         {
-            bool valid1 = password.All(c => Char.IsLetterOrDigit(c));
+            bool valid1 = password.All(c => char.IsLetterOrDigit(c));
             bool valid2 = password.Any(c => char.IsDigit(c));
             bool valid3 = password.Any(c => char.IsLetter(c));
             if(valid2 && valid3 && valid1 == false)
@@ -115,6 +119,50 @@ namespace Joojizza
             {
                 return false;
             }
+        }
+
+        public static bool isValidID(string id)
+        {
+            bool result = false;
+            bool sameChars = false;
+            char[] ID = id.ToCharArray();
+            int a, c;
+            int b = 0;
+            int[] digitID = new int[ID.Length];
+            int counter, counter2 = 0;
+            //converting char to int
+            for (counter = 0; counter < ID.Length; counter++)
+            {
+                digitID[counter] = (int)Char.GetNumericValue(ID[counter]);
+                if (counter != 9)
+                {
+                    b = b + digitID[counter] * (10 - counter);
+                }
+
+            }
+            a = digitID[ID.Length - 1];
+            c = b % 11;
+            if (digitID[0] == digitID[1] && digitID[1] == digitID[2] && digitID[2] == digitID[3] && digitID[3] == digitID[4] && digitID[4] == digitID[5] &&
+                digitID[5] == digitID[6] && digitID[6] == digitID[7] && digitID[7] == digitID[8] && digitID[8] == digitID[9])
+            {
+                sameChars = true;
+                result = false;
+            }
+            else if (c == 0 && a == 0)
+            {
+                result = true;
+            }
+            else if (c == 1 && a == 1)
+            {
+                result = true;
+            }
+            else if (c >= 1 && a == Math.Abs(c - 11))
+            {
+                result = true;
+            }
+
+            return result;
+
         }
     }
 }

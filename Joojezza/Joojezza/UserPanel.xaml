@@ -17,8 +17,8 @@
                     <ColumnDefinition Width="151*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="1">
-                    <Button Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray">
-                        <materialDesign:PackIcon Kind="BellOutline"/>
+                    <Button x:Name="profileBtn" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="profileBtn_Click">
+                        <materialDesign:PackIcon Kind="FaceProfile"/>
                     </Button>
                     <Button Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray">
                         <materialDesign:PackIcon Kind="Settings"/>

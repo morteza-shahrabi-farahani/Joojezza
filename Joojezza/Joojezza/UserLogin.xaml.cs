@@ -15,6 +15,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Joojizza
 {
@@ -23,11 +24,15 @@ namespace Joojizza
     /// </summary>
     public partial class UserLogin : Window
     {
-       
+        public static string name { get; set; }
+        public static string email { get; set; }
+        public static string passsword { get; set; }
+        public static string address { get; set; }
+        public static string id { get; set; }
+        public static string phone { get; set; }
         public UserLogin()
         {
             InitializeComponent();
-            
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
@@ -39,21 +44,35 @@ namespace Joojizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            bool valid = false;
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
             SqlConnection.Open();
             SqlCommand SqlCommand = new SqlCommand("select * from [UserInformation]", SqlConnection);
             SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+
             while (sqlDataReader.Read())
             {
                 if (emailTxt.Text == sqlDataReader["email"].ToString() && passwordTxt.Password == sqlDataReader["password"].ToString())
                 {
-                    MessageBox.Show("Login successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Login failed", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    name = sqlDataReader["name"].ToString();
+                    passsword = sqlDataReader["password"].ToString();
+                    address = sqlDataReader["address"].ToString();
+                    id = sqlDataReader["id"].ToString();
+                    email = sqlDataReader["email"].ToString();
+                    phone = sqlDataReader["phone"].ToString();
+                    valid = true; 
+
+                    UserPanel userPanel = new UserPanel();
+                    userPanel.Show();
+                    this.Close();
                 }
             }
+
+            if(valid == false)
+            {
+                MessageBox.Show("Login failed", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             SqlConnection.Close();
         }
     }

@@ -8,6 +8,7 @@ namespace Joojizza
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string position { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -17,6 +18,7 @@ namespace Joojizza
         {
             SoundPlayer soundPlayer = new SoundPlayer(@"G:\works\university\AP\Joojezza\Joojezza\Joojezza\media.io_zapsplat_multimedia_button_click_fast_plastic_49161.wav");
             soundPlayer.Play();
+            position ="user";
             UserLogin userLogin = new UserLogin();
             userLogin.Show();
             this.Close();
@@ -26,6 +28,7 @@ namespace Joojizza
         {
             SoundPlayer soundPlayer = new SoundPlayer(@"G:\works\university\AP\Joojezza\Joojezza\Joojezza\media.io_zapsplat_multimedia_button_click_fast_plastic_49161.wav");
             soundPlayer.Play();
+            position ="admin";
             AdminLogin adminLogin = new AdminLogin();
             adminLogin.Show();
             this.Close();

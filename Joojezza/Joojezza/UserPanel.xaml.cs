@@ -46,5 +46,12 @@ namespace Joojizza
             transitioning.OnApplyTemplate();
             gridCursor.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
         }
+
+        private void profileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Profile profile = new Profile();
+            profile.Show();
+            this.Close();
+        }
     }
 }
