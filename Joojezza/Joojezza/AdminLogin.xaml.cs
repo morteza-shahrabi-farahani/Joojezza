@@ -27,7 +27,7 @@ namespace Joojizza
         public static string address { get; set; }
         public static string id { get; set; }
         public static string phone { get; set; }
-
+        public static string imageFile { get; set; }
         public AdminLogin()
         {
             InitializeComponent();
@@ -51,6 +51,7 @@ namespace Joojizza
                     id = sqlDataReader["id"].ToString();
                     email = sqlDataReader["email"].ToString();
                     phone = sqlDataReader["phone"].ToString();
+                    imageFile = sqlDataReader["imageFile"].ToString();
                     valid = true;
 
                     UserPanel userPanel = new UserPanel();

@@ -30,19 +30,12 @@ namespace Joojizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (isValidMobileNumber(phoneTxt.Text.ToString()) && isValidEmail(emailTxt.Text.ToString()) && passwordTxt.Password.ToString() == confirmTxt.Password.ToString() && isValidName(nameTxt.Text) && isValidID(idTxt.Text) && isValidPassword(passwordTxt.Password.ToString()))
+            if (isValidMobileNumber(phoneTxt.Text.ToString()) && isValidEmail(emailTxt.Text.ToString()) && passwordTxt.Password.ToString() == confirmTxt.Password.ToString() && isValidName(nameTxt.Text) && isValidPassword(passwordTxt.Password.ToString()))
             {
                 SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
                 sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("insert into UserInformation ([name],[phone],[email],[id],[address],[password]) values(@name,@phone,@email,@id,@address,@password)", sqlConnection);
-                sqlCommand.Parameters.Add("@name", nameTxt.Text);
-                sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
-                sqlCommand.Parameters.Add("@email", emailTxt.Text);
-                sqlCommand.Parameters.Add("@id", idTxt.Text);
-                sqlCommand.Parameters.Add("@address", addressTxt.Text);
-                sqlCommand.Parameters.Add("@password", passwordTxt.Password);
-                sqlCommand.ExecuteNonQuery();
-                sqlConnection.Close();
+                SqlCommand sqlCommand = new SqlCommand("update UserInformation set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+
 
                 UserLogin userLogin = new UserLogin();
                 userLogin.Show();

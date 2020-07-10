@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Joojizza
 {
@@ -22,20 +25,46 @@ namespace Joojizza
     /// </summary>
     public partial class Profile : Window
     {
-        static string unknown;
-        static bool first = true;
+        string imageLocation;
+        string filename;
         public Profile()
         {
             InitializeComponent();
-            if(first == false)
+
+            SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            SqlConnection.Open();
+            SqlCommand SqlCommand = new SqlCommand("select * from [UserInformation]", SqlConnection);
+            SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+
+            while (sqlDataReader.Read())
             {
-                imageBrush.ImageSource = new BitmapImage(new Uri(unknown));
-            }
-            else
-            {
-                first = false;
+                if(MainWindow.position == "user")
+                {
+                    if(UserLogin.name == sqlDataReader["name"].ToString())
+                    {
+                        imageLocation = UserLogin.imageFile;
+                        if(imageLocation == "")
+                        {
+                            imageLocation = "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png";
+                        }
+                    }
+                }
+                else
+                {
+                    if (AdminLogin.name == sqlDataReader["name"].ToString())
+                    {
+                        imageLocation = sqlDataReader["imageFile"].ToString();
+                    }
+
+                    if (imageLocation == "")
+                    {
+                        imageLocation = "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png";
+                    }
+                }
             }
 
+            imageBrush.ImageSource = new BitmapImage(new Uri(imageLocation));
+ 
             if (MainWindow.position == "user")
             {
                 UserLogin userLogin = new UserLogin();
@@ -53,6 +82,8 @@ namespace Joojizza
                 phoneTxt.Text = AdminLogin.phone;
                 emailTxt.Text = AdminLogin.email;
             }
+
+            SqlConnection.Close();
         }
 
         private void edit_Click(object sender, RoutedEventArgs e)
@@ -72,19 +103,38 @@ namespace Joojizza
             try
             {
                 System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
-                openFileDialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" + "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +"Portable Network Graphic (*.png)|*.png";
-                if(openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                openFileDialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" + "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" + "Portable Network Graphic (*.png)|*.png";
+                if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     BitmapImage temp = new BitmapImage();
                     temp.UriSource = new Uri(openFileDialog.FileName);
                     imageBrush.ImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
-                    unknown = openFileDialog.FileName;
+                    imageLocation = openFileDialog.FileName;
+
+                    SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+                    sqlConnection.Open();
+                    SqlCommand sqlCommand = new SqlCommand("update UserInformation set imageFile = @imageFile where id = @id", sqlConnection);
+                    if(MainWindow.position == "user")
+                    {
+                        sqlCommand.Parameters.Add("@id", UserLogin.id);
+                        UserLogin.imageFile = imageLocation;
+                    }
+                    else
+                    {
+                        sqlCommand.Parameters.Add("@id", AdminLogin.id);
+                        AdminLogin.imageFile = imageLocation;
+                    }
+                    sqlCommand.Parameters.Add("@imageFile", imageLocation);
+                    sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    
                 }
             }
-            catch(Exception)
+            catch
             {
-                System.Windows.Forms.MessageBox.Show("Eror", "Eror", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.MessageBox.Show("Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
         }
     }
 }
