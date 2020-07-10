@@ -54,8 +54,8 @@ namespace Joojizza
                     imageFile = sqlDataReader["imageFile"].ToString();
                     valid = true;
 
-                    UserPanel userPanel = new UserPanel();
-                    userPanel.Show();
+                    AdminPanel adminPanel = new AdminPanel();
+                    adminPanel.Show();
                     this.Close();
                 }
                 

@@ -33,14 +33,14 @@ namespace Joojizza
 
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
             SqlConnection.Open();
-            SqlCommand SqlCommand = new SqlCommand("select * from [UserInformation]", SqlConnection);
+            SqlCommand SqlCommand = new SqlCommand("select * from [Table]", SqlConnection);
             SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
 
             while (sqlDataReader.Read())
             {
                 if(MainWindow.position == "user")
                 {
-                    if(UserLogin.name == sqlDataReader["name"].ToString())
+                    if(UserLogin.id == sqlDataReader["id"].ToString())
                     {
                         imageLocation = UserLogin.imageFile;
                         if(imageLocation == "")
@@ -51,14 +51,13 @@ namespace Joojizza
                 }
                 else
                 {
-                    if (AdminLogin.name == sqlDataReader["name"].ToString())
+                    if (AdminLogin.id == sqlDataReader["id"].ToString())
                     {
-                        imageLocation = sqlDataReader["imageFile"].ToString();
-                    }
-
-                    if (imageLocation == "")
-                    {
-                        imageLocation = "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png";
+                        imageLocation = AdminLogin.imageFile;
+                        if (imageLocation == "")
+                        {
+                            imageLocation = "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png";
+                        }
                     }
                 }
             }
@@ -88,7 +87,9 @@ namespace Joojizza
 
         private void edit_Click(object sender, RoutedEventArgs e)
         {
-
+            Edit edit = new Edit();
+            edit.Show();
+            this.Close();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
@@ -113,8 +114,17 @@ namespace Joojizza
 
                     SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
                     sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("update UserInformation set imageFile = @imageFile where id = @id", sqlConnection);
-                    if(MainWindow.position == "user")
+                    SqlCommand sqlCommand;
+                    if (MainWindow.position == "user")
+                    {
+                        sqlCommand = new SqlCommand("update UserInformation set imageFile = @imageFile where id = @id", sqlConnection);
+                    }
+                    else
+                    {
+                        sqlCommand = new SqlCommand("update [Table] set imageFile = @imageFile where id = @id", sqlConnection);
+                    }
+
+                    if (MainWindow.position == "user")
                     {
                         sqlCommand.Parameters.Add("@id", UserLogin.id);
                         UserLogin.imageFile = imageLocation;
@@ -127,7 +137,7 @@ namespace Joojizza
                     sqlCommand.Parameters.Add("@imageFile", imageLocation);
                     sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
-                    
+
                 }
             }
             catch

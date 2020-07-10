@@ -34,12 +34,43 @@ namespace Joojizza
             {
                 SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
                 sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("update UserInformation set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                if (MainWindow.position == "user")
+                {
+                    SqlCommand sqlCommand = new SqlCommand("update UserInformation set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                    sqlCommand.Parameters.Add("@id", UserLogin.id);
+                    sqlCommand.Parameters.Add("@name", nameTxt.Text);
+                    sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
+                    sqlCommand.Parameters.Add("@email", emailTxt.Text);
+                    sqlCommand.Parameters.Add("@password", passwordTxt.Password);
 
+                    sqlCommand.ExecuteNonQuery();
 
-                UserLogin userLogin = new UserLogin();
-                userLogin.Show();
-                this.Close();
+                    sqlConnection.Close();
+
+                    UserLogin userLogin = new UserLogin();
+                    userLogin.Show();
+                    this.Close();
+                }
+                else
+                {
+                    SqlCommand sqlCommand = new SqlCommand("update [Table] set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                    sqlCommand.Parameters.Add("@id", AdminLogin.id);
+                    sqlCommand.Parameters.Add("@name", nameTxt.Text);
+                    sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
+                    sqlCommand.Parameters.Add("@email", emailTxt.Text);
+                    sqlCommand.Parameters.Add("@password", passwordTxt.Password);
+
+                    sqlCommand.ExecuteNonQuery();
+
+                    sqlConnection.Close();
+
+                    AdminLogin adminLogin = new AdminLogin();
+                    adminLogin.Show();
+                    this.Close();
+                }
+
+                
+                
             }
             else
             {
@@ -86,7 +117,7 @@ namespace Joojizza
         public static bool isValidName(string name)
         {
 
-            string strRegex = @"^[a-zA-Z]$";
+            string strRegex = @"^[a-zA-Z]+$";
             Regex regex = new Regex(strRegex);
             Match match = regex.Match(name);
             if (match.Success)

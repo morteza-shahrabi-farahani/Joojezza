@@ -49,3 +49,11 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojezza.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza.exe
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojizza.pdb
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojezza.csprojAssemblyReference.cache
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\AdminPanel.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\RestaurantInformation.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\AdminPanel.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\RestaurantInformation.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\InformationOfRestaurant.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\InformationOfRestaurant.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\EditRestaurantInformation.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\EditRestaurantInformation.baml
