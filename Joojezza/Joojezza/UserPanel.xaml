@@ -21,7 +21,7 @@
                         <materialDesign:PackIcon Kind="FaceProfile"/>
                     </Button>
                     <Button Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray">
-                        <materialDesign:PackIcon Kind="Settings"/>
+                        <materialDesign:PackIcon Kind="Message"/>
                     </Button>
                     <Button x:Name="exitButton" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="exitButton_Click">
                         <materialDesign:PackIcon Kind="Power"/>
@@ -36,39 +36,39 @@
             <ListView x:Name="listView" Margin="0 100" Foreground="White" SelectionChanged="listView_SelectionChanged">
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-                        <TextBlock Text="Home" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Kind="Calendar" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
+                        <TextBlock Text="Date" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
-                
+
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Food" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
                         <TextBlock Text="Food" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
-                
+
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="FormatListBulleted" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
                         <TextBlock Text="List" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
-                
+
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="TruckDelivery" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
                         <TextBlock Text="Delivery" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
-                
+
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Cash" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
                         <TextBlock Text="Cash" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
-                
+
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>

@@ -33,8 +33,19 @@ namespace Joojizza
 
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
             SqlConnection.Open();
-            SqlCommand SqlCommand = new SqlCommand("select * from [Table]", SqlConnection);
-            SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+            SqlCommand SqlCommand;
+            SqlDataReader sqlDataReader;
+            if (MainWindow.position == "admin")
+            {
+                SqlCommand = new SqlCommand("select * from [Table]", SqlConnection);
+                sqlDataReader = SqlCommand.ExecuteReader();
+            }
+
+            else
+            {
+                SqlCommand = new SqlCommand("select * from UserInformation", SqlConnection);
+                sqlDataReader = SqlCommand.ExecuteReader();
+            }
 
             while (sqlDataReader.Read())
             {

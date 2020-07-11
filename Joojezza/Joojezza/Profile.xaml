@@ -37,11 +37,13 @@
             </Border.Background>
         </Border>
 
-        <StackPanel Margin="10,307,10,10">
-            <StackPanel Orientation="Horizontal" Margin="5 5">
+        <StackPanel Margin="10,288,10,10">
+            <DockPanel Margin="5, 5, 5, 5" Height="57" >
                 <materialDesign:PackIcon Kind="Location" Height="30" Foreground="Gray"></materialDesign:PackIcon>
-                <TextBlock x:Name="addressTxt" Text="address" Margin="10 5 50 5"/>
-            </StackPanel>
+
+                <TextBlock x:Name="addressTxt" Text="address" Margin="5" TextWrapping="Wrap"/>
+
+            </DockPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5 5">
                 <materialDesign:PackIcon Kind="Phone" Height="30" Foreground="Gray"></materialDesign:PackIcon>
@@ -52,10 +54,10 @@
                 <materialDesign:PackIcon Kind="Email" Height="30" Foreground="Gray"></materialDesign:PackIcon>
                 <TextBlock x:Name="emailTxt" Text="email" Margin="10 5 50 5"/>
             </StackPanel>
-            <Button x:Name="edit" HorizontalAlignment="Center" Width="100" Margin="0 20 0 0" Content="Edit" Click="edit_Click"/>
+            <Button x:Name="edit" HorizontalAlignment="Center" Width="100" Margin="140,10,140,0" Content="Edit" Click="edit_Click"/>
 
 
         </StackPanel>
-        
+
     </Grid>
 </Window>

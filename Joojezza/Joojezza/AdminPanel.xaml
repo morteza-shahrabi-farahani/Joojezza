@@ -21,7 +21,7 @@
                         <materialDesign:PackIcon Kind="FaceProfile"/>
                     </Button>
                     <Button Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray">
-                        <materialDesign:PackIcon Kind="Settings"/>
+                        <materialDesign:PackIcon Kind="Message"/>
                     </Button>
                     <Button x:Name="exitButton" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="exitButton_Click">
                         <materialDesign:PackIcon Kind="Power"/>

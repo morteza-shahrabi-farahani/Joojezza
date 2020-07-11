@@ -57,3 +57,7 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Information
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\InformationOfRestaurant.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\EditRestaurantInformation.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\EditRestaurantInformation.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Chat.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Chat.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Date.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Date.baml
