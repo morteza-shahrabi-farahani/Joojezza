@@ -23,6 +23,7 @@ namespace Joojizza
     /// </summary>
     public partial class Edit : Window
     {
+        public static bool changing = false;
         public Edit()
         {
             InitializeComponent();
@@ -30,57 +31,106 @@ namespace Joojizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (isValidMobileNumber(phoneTxt.Text.ToString()) && isValidEmail(emailTxt.Text.ToString()) && passwordTxt.Password.ToString() == confirmTxt.Password.ToString() && isValidName(nameTxt.Text) && isValidPassword(passwordTxt.Password.ToString()))
+            if(MainWindow.position == "user")
             {
-                SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
-                sqlConnection.Open();
-                if (MainWindow.position == "user")
+                if (isValidMobileNumber(phoneTxt.Text.ToString()) && isValidEmail(emailTxt.Text.ToString()) && passwordTxt.Password.ToString() == confirmTxt.Password.ToString() && isValidNameUser(nameTxt.Text) && isValidPasswordUser(passwordTxt.Password.ToString()))
                 {
-                    SqlCommand sqlCommand = new SqlCommand("update UserInformation set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
-                    sqlCommand.Parameters.Add("@id", UserLogin.id);
-                    sqlCommand.Parameters.Add("@name", nameTxt.Text);
-                    sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
-                    sqlCommand.Parameters.Add("@email", emailTxt.Text);
-                    sqlCommand.Parameters.Add("@password", passwordTxt.Password);
+                    SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+                    sqlConnection.Open();
+                    if (MainWindow.position == "user")
+                    {
+                        SqlCommand sqlCommand = new SqlCommand("update UserInformation set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                        sqlCommand.Parameters.Add("@id", UserLogin.id);
+                        sqlCommand.Parameters.Add("@name", nameTxt.Text);
+                        sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
+                        sqlCommand.Parameters.Add("@email", emailTxt.Text);
+                        sqlCommand.Parameters.Add("@password", passwordTxt.Password);
 
-                    sqlCommand.ExecuteNonQuery();
+                        sqlCommand.ExecuteNonQuery();
 
-                    sqlConnection.Close();
+                        sqlConnection.Close();
 
-                    UserLogin userLogin = new UserLogin();
-                    userLogin.Show();
-                    this.Close();
+                        UserLogin userLogin = new UserLogin();
+                        userLogin.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        SqlCommand sqlCommand = new SqlCommand("update [Table] set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                        sqlCommand.Parameters.Add("@id", AdminLogin.id);
+                        sqlCommand.Parameters.Add("@name", nameTxt.Text);
+                        sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
+                        sqlCommand.Parameters.Add("@email", emailTxt.Text);
+                        sqlCommand.Parameters.Add("@password", passwordTxt.Password);
+
+                        sqlCommand.ExecuteNonQuery();
+
+                        sqlConnection.Close();
+
+                        AdminLogin adminLogin = new AdminLogin();
+                        adminLogin.Show();
+                        this.Close();
+                    }
+
                 }
                 else
                 {
-                    SqlCommand sqlCommand = new SqlCommand("update [Table] set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
-                    sqlCommand.Parameters.Add("@id", AdminLogin.id);
-                    sqlCommand.Parameters.Add("@name", nameTxt.Text);
-                    sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
-                    sqlCommand.Parameters.Add("@email", emailTxt.Text);
-                    sqlCommand.Parameters.Add("@password", passwordTxt.Password);
-
-                    sqlCommand.ExecuteNonQuery();
-
-                    sqlConnection.Close();
-
-                    AdminLogin adminLogin = new AdminLogin();
-                    adminLogin.Show();
-                    this.Close();
+                    MessageBox.Show("invalid inputs", "", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                
-                
             }
             else
             {
-                MessageBox.Show("invalid inputs", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (isValidMobileNumber(phoneTxt.Text.ToString()) && isValidEmail(emailTxt.Text.ToString()) && passwordTxt.Password.ToString() == confirmTxt.Password.ToString() && isValidNameAdmin(nameTxt.Text) && isValidPasswordUser(passwordTxt.Password.ToString()))
+                {
+                    SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+                    sqlConnection.Open();
+                    if (MainWindow.position == "user")
+                    {
+                        SqlCommand sqlCommand = new SqlCommand("update UserInformation set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                        sqlCommand.Parameters.Add("@id", UserLogin.id);
+                        sqlCommand.Parameters.Add("@name", nameTxt.Text);
+                        sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
+                        sqlCommand.Parameters.Add("@email", emailTxt.Text);
+                        sqlCommand.Parameters.Add("@password", passwordTxt.Password);
+
+                        sqlCommand.ExecuteNonQuery();
+
+                        sqlConnection.Close();
+
+                        UserLogin userLogin = new UserLogin();
+                        userLogin.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        SqlCommand sqlCommand = new SqlCommand("update [Table] set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                        sqlCommand.Parameters.Add("@id", AdminLogin.id);
+                        sqlCommand.Parameters.Add("@name", nameTxt.Text);
+                        sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
+                        sqlCommand.Parameters.Add("@email", emailTxt.Text);
+                        sqlCommand.Parameters.Add("@password", passwordTxt.Password);
+
+                        sqlCommand.ExecuteNonQuery();
+                        changing = true;
+                        sqlConnection.Close();
+
+                        AdminLogin adminLogin = new AdminLogin();
+                        adminLogin.Show();
+                        this.Close();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("invalid inputs", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
+
         }
 
         public static bool isValidMobileNumber(string inputMobileNumber)
         {
-            string strRegex = @"(^09[0-9]{9}$)|(^9[0-9]{9}$)|(^+9809[0-9]{9}$)|(^00989[0-9]{9}$)";
+            string strRegex = @"(^09[0-9]{9}$)|(^9[0-9]{9}$)|(^\+9809[0-9]{9}$)|(^00989[0-9]{9}$)";
 
             // Class Regex Repesents an 
             // immutable regular expression. 
@@ -114,9 +164,8 @@ namespace Joojizza
                 return (false);
         }
 
-        public static bool isValidName(string name)
+        public static bool isValidNameUser(string name)
         {
-
             string strRegex = @"^[a-zA-Z]+$";
             Regex regex = new Regex(strRegex);
             Match match = regex.Match(name);
@@ -130,7 +179,34 @@ namespace Joojizza
             }
         }
 
-        public static bool isValidPassword(string password)
+        public static bool isValidNameAdmin(string name)
+        {
+            if (name.Contains("admin"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool isValidPasswordUser(string password)
+        {
+            bool valid1 = password.All(c => char.IsLetterOrDigit(c));
+            bool valid2 = password.Any(c => char.IsDigit(c));
+            bool valid3 = password.Any(c => char.IsLetter(c));
+            if (valid2 && valid3 && valid1 == false)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool isValidPasswordAdmin(string password)
         {
             bool valid1 = password.All(c => char.IsLetterOrDigit(c));
             bool valid2 = password.Any(c => char.IsDigit(c));
