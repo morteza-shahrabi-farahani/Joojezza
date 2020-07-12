@@ -56,7 +56,7 @@ namespace Joojizza
         //checking validity of phone number
         public static bool isValidMobileNumber(string inputMobileNumber)
         {
-            string strRegex = @"(^09[0-9]{9}$)|(^9[0-9]{9}$)|(^+9809[0-9]{9}$)|(^00989[0-9]{9}$)"; 
+            string strRegex = @"(^09[0-9]{9}$)|(^9[0-9]{9}$)|(^\+9809[0-9]{9}$)|(^00989[0-9]{9}$)"; 
 
             // Class Regex Repesents an 
             // immutable regular expression. 
