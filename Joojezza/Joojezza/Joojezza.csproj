@@ -105,6 +105,9 @@
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Clock.xaml.cs">
+      <DependentUpon>Clock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Date.xaml.cs">
       <DependentUpon>Date.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,9 @@
     </Compile>
     <Compile Include="EditRestaurantInformation.xaml.cs">
       <DependentUpon>EditRestaurantInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FoodCard.xaml.cs">
+      <DependentUpon>FoodCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -155,6 +161,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Clock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Date.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditRestaurantInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FoodCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -272,6 +286,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="menu.jpg" />
+    <Resource Include="Resources\Assets\pizzaPeperoni.jpg" />
+    <Resource Include="Resources\pizzaPeperoni.jpg" />
     <Content Include="users.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

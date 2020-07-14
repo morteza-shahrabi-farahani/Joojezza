@@ -20,6 +20,7 @@ namespace Joojizza
     /// </summary>
     public partial class Date : UserControl
     {
+        public string choosenDate;
         public Date()
         {
             InitializeComponent();
@@ -30,7 +31,10 @@ namespace Joojizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var date = calender.SelectedDate;
+            choosenDate = calender.SelectedDate.ToString();
+            Clock clock = new Clock();
+            clock.Show();
+            
         }
     }
 }

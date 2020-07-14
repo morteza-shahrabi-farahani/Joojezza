@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Viewbox Margin="20, 5, 20, 50">
-            <Calendar x:Name="calender" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="280" Height="351"/>
+        <Viewbox Margin="20,5,20,99.6">
+            <Calendar x:Name="calender" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="280" Height="355"/>
         </Viewbox>
         <Button Content="Select" Margin="334,405,356,12.6" Click="Button_Click"></Button>
     </Grid>

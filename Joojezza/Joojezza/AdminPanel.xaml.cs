@@ -43,8 +43,12 @@ namespace Joojizza
             switch(index)
             {
                 case 0:
+                    principal.Children.Clear();
+                    principal.Children.Add(new Date());
                     break;
                 case 1:
+                    principal.Children.Clear();
+                    principal.Children.Add(new FoodCard());
                     break;
                 case 2:
                     break;
@@ -53,7 +57,6 @@ namespace Joojizza
                 case 4:
                     break;
                 case 5:
-                    
                     principal.Children.Clear();
                     principal.Children.Add(new InformationOfRestaurant());
                     break;

@@ -103,13 +103,13 @@ namespace Joojizza
                     }
                     else
                     {
-                        SqlCommand sqlCommand = new SqlCommand("update [Table] set name = @name, phone = @phone, email = @email, password = @password where id = @id", sqlConnection);
+                        SqlCommand sqlCommand = new SqlCommand("update [Table] set name = @name, phone = @phone, email = @email, password = @password, edit = @edit where id = @id", sqlConnection);
                         sqlCommand.Parameters.Add("@id", AdminLogin.id);
                         sqlCommand.Parameters.Add("@name", nameTxt.Text);
                         sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
                         sqlCommand.Parameters.Add("@email", emailTxt.Text);
                         sqlCommand.Parameters.Add("@password", passwordTxt.Password);
-
+                        sqlCommand.Parameters.Add("@edit", "true");
                         sqlCommand.ExecuteNonQuery();
                         changing = true;
                         sqlConnection.Close();

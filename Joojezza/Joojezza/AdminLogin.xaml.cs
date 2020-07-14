@@ -48,7 +48,7 @@ namespace Joojizza
             {
                 if(idTxt.Text == sqlDataReader[2].ToString())
                 {
-                    if (Edit.changing)
+                    if (sqlDataReader["edit"].ToString() == "true")
                     {
                         if (passwordTxt.Password == sqlDataReader[1].ToString())
                         {
