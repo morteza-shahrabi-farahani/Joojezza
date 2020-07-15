@@ -117,6 +117,9 @@
     <Compile Include="Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditFood.xaml.cs">
+      <DependentUpon>EditFood.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditRestaurantInformation.xaml.cs">
       <DependentUpon>EditRestaurantInformation.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditFood.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,7 +22,10 @@ namespace Joojizza
     public partial class UserPanel : Window
     {
         public static string date = "";
-        public static int clock = 0;
+        public static int clock1 = 0;
+        public static int clock2 = 0;
+        public static int clock3 = 0;
+        public static int clock4 = 0;
         bool same = false;
         int number = 0;
         int set = 0;
@@ -54,8 +57,9 @@ namespace Joojizza
                     principal.Children.Add(new Date());
                     break;
                 case 1:
-                    if (date == "" || clock == 0)
+                    if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0 ))
                     {
+                        principal.Children.Clear();
                         MessageBox.Show("First you have to choose date and time", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
@@ -98,7 +102,7 @@ namespace Joojizza
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read())
             {
-                if (sqlDataReader["date"].ToString() == Date.choosenDate && sqlDataReader[2].ToString() == clock.ToString() && number == 0)
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[2].ToString() == clock1.ToString() || sqlDataReader[2].ToString() == clock2.ToString() || sqlDataReader[2].ToString() == clock3.ToString() || sqlDataReader[2].ToString() == clock4.ToString()) && number == 0)
                 {
                     same = true;
                     foodCard1.numberTxt.Text = sqlDataReader["number"].ToString();
@@ -109,7 +113,7 @@ namespace Joojizza
                     number++;
                 }
 
-                if (sqlDataReader["date"] == date && sqlDataReader["time"] == clock.ToString() && number == 1)
+                if (sqlDataReader["date"] == date && (sqlDataReader[2].ToString() == clock1.ToString() || sqlDataReader[2].ToString() == clock2.ToString() || sqlDataReader[2].ToString() == clock3.ToString() || sqlDataReader[2].ToString() == clock4.ToString()) && number == 1)
                 {
                     same = true;
                     foodCard2.numberTxt.Text = sqlDataReader["number"].ToString();
@@ -120,7 +124,7 @@ namespace Joojizza
                     number++;
                 }
 
-                if (sqlDataReader["date"] == date && sqlDataReader["time"] == clock.ToString() && number == 2)
+                if (sqlDataReader["date"] == date && (sqlDataReader[2].ToString() == clock1.ToString() || sqlDataReader[2].ToString() == clock2.ToString() || sqlDataReader[2].ToString() == clock3.ToString() || sqlDataReader[2].ToString() == clock4.ToString()) && number == 2)
                 {
                     same = true;
                     foodCard3.numberTxt.Text = sqlDataReader["number"].ToString();

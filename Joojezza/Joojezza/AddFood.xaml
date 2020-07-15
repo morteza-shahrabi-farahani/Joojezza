@@ -9,28 +9,26 @@
         Title="AddFood" Height="593.817" Width="355.273" WindowStyle="None">
     <Grid Margin="0,0,-6.4,0.2">
         <StackPanel Orientation="Vertical" OpacityMask="#FFF90505" Margin="10,0,10.2,-0.8">
-            <StackPanel Orientation="Vertical" Margin="0,0,0.2,0" Background="DarkGray" Height="165">
+            <StackPanel Orientation="Vertical" Margin="0,5,5.2,0" Background="DarkGray" Height="179">
 
-                <Image x:Name="foodImage1" Height="203" Margin="0,0,0.2,0" />
+                <Image x:Name="foodImage1" Height="206" Margin="0,0,0.2,0" Source="G:/works/university/AP/Joojezza/Joojezza/logo/logo.png"/>
 
             </StackPanel>
             <Button x:Name="picture" Style="{StaticResource MaterialDesignFlatButton}" Foreground="Black" Click="picture_Click" HorizontalAlignment="Center">
                 <materialDesign:PackIcon Kind="Camera"/>
             </Button>
-            <TextBox x:Name="nameTxt" materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
+            <TextBox x:Name="nameTxt" materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,5,-0.8,5" Height="44" FontSize="13"/>
             <TextBox x:Name="descriptionTxt" materialDesign:HintAssist.Hint="Description" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
             <TextBox x:Name="priceTxt" materialDesign:HintAssist.Hint="Price" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
             <TextBox x:Name="numberTxt" materialDesign:HintAssist.Hint="Number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
-            <TextBox x:Name="typeTxt" materialDesign:HintAssist.Hint="Type" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
+            <ComboBox x:Name="typeComboBox" VerticalAlignment="Stretch" Margin="5,15,5.2,5">
+                <ComboBoxItem Content="Fast food"/>
+                <ComboBoxItem Content="Iranian food"/>
+                <ComboBoxItem Content="Dessert"/>
+                <ComboBoxItem Content="Drinks"/>
+            </ComboBox>
 
         </StackPanel>
-
-        <CheckBox x:Name="clock1" Content="10-12" Height="17" Margin="15,524,266.2,43" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <CheckBox x:Name="clock2" Content="12-14" Margin="114,524,181.2,43" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <CheckBox x:Name="clock3" Content="20-22" Height="17" Margin="192,524,100.2,43" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <CheckBox x:Name="clock4" Content="22-24" Height="17" Margin="275,524,24.2,43" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button x:Name="addBtn" Content="Add" Margin="136,555,136.2,7" Height="Auto" Click="addBtn_Click"/>
-        <DatePicker x:Name="calendar" VerticalAlignment="Stretch" Margin="312,474,10.2,66" Foreground="Black"/>
-        <TextBlock x:Name="dateTxt" TextWrapping="Wrap" Text="Date" Margin="10,474,0.2,69" VerticalAlignment="Center" FontSize="13"/>
+        <Button x:Name="addBtn" Content="Add" Margin="123,499,149.2,43" Height="Auto" Click="addBtn_Click"/>
     </Grid>
 </Window>

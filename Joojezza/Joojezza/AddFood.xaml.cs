@@ -22,11 +22,12 @@ namespace Joojizza
     public partial class AddFood : Window
     {
         string imageLocation;
-
+        int counter;
         public AddFood()
         {
             InitializeComponent();
-
+            counter = 0;
+            imageLocation = foodImage1.Source.ToString();
         }
 
         private void picture_Click(object sender, RoutedEventArgs e)
@@ -57,12 +58,14 @@ namespace Joojizza
             sqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("select * from Food", sqlConnection);
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            
             while(sqlDataReader.Read())
             {
                 if(nameTxt.Text == sqlDataReader["name"].ToString())
                 {
                     same = true;
                 }
+                counter++;
             }
             sqlDataReader.Close();
 
@@ -73,57 +76,46 @@ namespace Joojizza
             
             else
             {
-                string date = calendar.SelectedDate.Value.Date.ToShortDateString();
-                string time1, time2, time3, time4;
-                if(clock1.IsChecked == true)
+                try
                 {
-                    time1 = "1";
-                }
-                else
-                {
-                    time1 = "0";
-                }
+                    string date = AdminPanel.date;
+                    string time1, time2, time3, time4;
+                    time1 = AdminPanel.clock1.ToString();
+                    time2 = AdminPanel.clock2.ToString();
+                    time3 = AdminPanel.clock3.ToString();
+                    time4 = AdminPanel.clock4.ToString();
+                    ComboBoxItem unknown = (ComboBoxItem)typeComboBox.SelectedItem;
+                    string type = unknown.Content.ToString();
+                    
+                    SqlCommand sqlCommand2 = new SqlCommand("insert into Food ([date],[Time1],[Time2],[Time3],[Time4],[number],[type],[name],[description],[price],[imageFile],[id]) values(@date,@Time1,@Time2,@Time3,@Time4,@number,@type,@name,@description,@price,@imageFile,@id)", sqlConnection);
+                    sqlCommand2.Parameters.Add("@name", nameTxt.Text);
+                    sqlCommand2.Parameters.Add("@date", date);
+                    sqlCommand2.Parameters.Add("@Time1", time1);
+                    sqlCommand2.Parameters.Add("@Time2", time2);
+                    sqlCommand2.Parameters.Add("@Time3", time3);
+                    sqlCommand2.Parameters.Add("@Time4", time4);
+                    sqlCommand2.Parameters.Add("@number", numberTxt.Text);
+                    sqlCommand2.Parameters.Add("@type", type);
+                    sqlCommand2.Parameters.Add("@description", descriptionTxt.Text);
+                    sqlCommand2.Parameters.Add("@price", priceTxt.Text);
+                    if (imageLocation != "")
+                    {
+                        sqlCommand2.Parameters.Add("@imageFile", imageLocation);
+                    }
+                    else
+                    {
+                        sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png");
+                    }
+                    sqlCommand2.Parameters.Add("@id", counter + 1);
+                    sqlCommand2.ExecuteNonQuery();
+                    sqlConnection.Close();
 
-                if (clock2.IsChecked == true)
-                {
-                    time2 = "1";
+                    this.Close();
                 }
-                else
+                catch
                 {
-                    time2 = "0";
+                    MessageBox.Show("Invalid inputs", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                if (clock3.IsChecked == true)
-                {
-                    time3 = "1";
-                }
-                else
-                {
-                    time3 = "0";
-                }
-
-                if (clock4.IsChecked == true)
-                {
-                    time4 = "1";
-                }
-                else
-                {
-                    time4 = "0";
-                }
-                SqlCommand sqlCommand2 = new SqlCommand("insert into Food ([date],[Time1],[Time2],[Time3],[Time4],[number],[type],[name],[description],[price],[imageFile]) values(@date,@Time1,@Time2,@Time3,@Time4,@number,@type,@name,@description,@price,@imageFile)", sqlConnection);
-                sqlCommand2.Parameters.Add("@name", nameTxt.Text);
-                sqlCommand2.Parameters.Add("@date", date);
-                sqlCommand2.Parameters.Add("@Time1", time1);
-                sqlCommand2.Parameters.Add("@Time2", time2);
-                sqlCommand2.Parameters.Add("@Time3", time3);
-                sqlCommand2.Parameters.Add("@Time4", time4);
-                sqlCommand2.Parameters.Add("@number", numberTxt.Text);
-                sqlCommand2.Parameters.Add("@type", typeTxt.Text);
-                sqlCommand2.Parameters.Add("@description", descriptionTxt.Text);
-                sqlCommand2.Parameters.Add("@price", priceTxt.Text);
-                sqlCommand2.Parameters.Add("@imageFile", imageLocation);
-                sqlCommand2.ExecuteNonQuery();
-                sqlConnection.Close();
             }
         }
     }

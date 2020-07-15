@@ -9,9 +9,9 @@
     <Grid>
         <TextBlock Text="Choose one of the times please." Margin="10" FontSize="20" TextWrapping="Wrap"></TextBlock>
         <RadioButton x:Name="button1" Content="12 - 14" HorizontalAlignment="Left" Margin="40,90,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="button2" Content="14 - 16" HorizontalAlignment="Left" Margin="40,216,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="button2" Content="14 - 16" HorizontalAlignment="Left" Margin="40,132,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="button3" Content="20 - 22" HorizontalAlignment="Left" Margin="40,175,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="button4" Content="22 - 24" HorizontalAlignment="Left" Margin="40,132,0,0" VerticalAlignment="Top"/>
-        <Button Margin="79,261,71.6,29.4" Content="Save" Click="Button_Click"></Button>
+        <RadioButton x:Name="button4" Content="22 - 24" HorizontalAlignment="Left" Margin="40,216,0,0" VerticalAlignment="Top"/>
+        <Button Margin="80,250,70.6,40.4" Content="Save" Click="Button_Click"></Button>
     </Grid>
 </Window>

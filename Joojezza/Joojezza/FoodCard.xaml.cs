@@ -37,7 +37,7 @@ namespace Joojizza
             }
             else
             {
-                button.Content = "Change number";
+                button.Content = "Edit";
             }
         }
 
@@ -45,15 +45,22 @@ namespace Joojizza
         {
             if(MainWindow.position == "user")
             {
+               
                 SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
                 sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("insert into Cart ([name],[date],[Time1],[number],[type],[description],[price],[imageFile],[Time2],[Time3],[Time4]) values(@name,@phone,@email,@id,@address,@password)", sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("insert into Cart ([name],[date],[Time1],[number],[type],[description],[price],[imageFile],[Time2],[Time3],[Time4],[userID]) values(@name,@date,@Time1,@number,@type,@description,@price,@imageFile,@Time2,@Time3,@userID)", sqlConnection);
                 sqlCommand.Parameters.Add("@name", nameTxt.Text);
-                sqlCommand.Parameters.Add("@phone", phoneTxt.Text);
-                sqlCommand.Parameters.Add("@email", emailTxt.Text);
-                sqlCommand.Parameters.Add("@id", idTxt.Text);
-                sqlCommand.Parameters.Add("@address", addressTxt.Text);
-                sqlCommand.Parameters.Add("@password", passwordTxt.Password);
+                sqlCommand.Parameters.Add("@date", UserPanel.date);
+                sqlCommand.Parameters.Add("@Time1", UserPanel.clock1);
+                sqlCommand.Parameters.Add("@Time2", UserPanel.clock2);
+                sqlCommand.Parameters.Add("@Time3", UserPanel.clock3);
+                sqlCommand.Parameters.Add("@Time4", UserPanel.clock4);
+                sqlCommand.Parameters.Add("@number", numberTxt.Text);
+                sqlCommand.Parameters.Add("@type", typeTxt.Content);
+                sqlCommand.Parameters.Add("@description", foodInformation1.Text);
+                sqlCommand.Parameters.Add("@price", priceTxt.Text);
+                sqlCommand.Parameters.Add("@imageFile", foodImage1.Source);
+                sqlCommand.Parameters.Add("@userID", UserLogin.id);
                 sqlCommand.ExecuteNonQuery();
                 sqlConnection.Close();
             }

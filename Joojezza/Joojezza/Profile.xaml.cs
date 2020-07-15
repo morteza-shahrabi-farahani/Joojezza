@@ -68,6 +68,7 @@ namespace Joojizza
                         if (imageLocation == "")
                         {
                             imageLocation = "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png";
+                        
                         }
                     }
                 }

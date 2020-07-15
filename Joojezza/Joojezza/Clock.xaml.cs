@@ -50,6 +50,7 @@ namespace Joojizza
             {
                 
                 AdminPanel.clock4 = 1;
+                
                 this.Close();
             }
             else
