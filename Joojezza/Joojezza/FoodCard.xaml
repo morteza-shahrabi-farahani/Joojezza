@@ -4,32 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Joojizza"
-             mc:Ignorable="d" Height="433.871" Width="282.894" BorderBrush="#FFFF0202" OpacityMask="#FFF10707">
-    <Grid OpacityMask="#FFF40202">
-        <StackPanel Orientation="Vertical" OpacityMask="#FFF90505">
-            <StackPanel Orientation="Horizontal" Background="Red">
-                <TextBlock Text="Joojezza" Margin="10" FontFamily="Kristen ITC" FontSize="24"></TextBlock>
-                <Image Source="logo.png" Width="46" Margin="100, 5, 5, 5"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="0,0,0.2,0">
-                <StackPanel.OpacityMask>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFFF0101" Offset="1"/>
-                    </LinearGradientBrush>
-                </StackPanel.OpacityMask>
-                <Image x:Name="foodImage" Source="G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\Resources\Assets\pizzaPeperoni.jpg" Margin="20,20,39.2,20" Height="201"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <TextBlock x:Name="foodInformation" Margin="10" Text="This food is pizza. It is very delicious. I hope you would like it." FontSize="18" Height="55" TextWrapping="Wrap"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10" >
-                <TextBlock Text="25$" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 10, 10, 10" FontSize="16"></TextBlock>
-                <TextBlock Text="Number: " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 10, 10, 10" FontSize="16"></TextBlock>
-                <TextBlock Text="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 10, 10, 10" FontSize="16"></TextBlock>
-                <Button Content="Add to cart" Margin="5, 5, 0, 0" HorizontalAlignment="Right"/>
-            </StackPanel>
+             mc:Ignorable="d" Height="465.962" Width="236.823" BorderBrush="#FFFF0202" OpacityMask="#FFF10707">
+    <Grid OpacityMask="#FFF40202" Margin="0,0,0,-0.4">
+        <Grid Width="230" Background="DarkGray">
+            <StackPanel Orientation="Vertical" OpacityMask="#FFF90505" Width="230" Margin="0,0,0,-0.4">
+                <StackPanel Orientation="Horizontal" Background="Red" Width="240">
+                    <TextBlock Text="Joojezza" Margin="10" FontFamily="Kristen ITC" FontSize="24"></TextBlock>
+                    <Image Source="logo.png" Width="46" Margin="55, 5, 5, 5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,0,0,0">
+                    <Image x:Name="foodImage1" Source="G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\Resources\Assets\pizzaPeperoni.jpg" Height="223" Margin="0,0,0.4,0" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="nameTxt" Text="Peperroni pizza" HorizontalAlignment="Center" FontSize="18" Margin="5"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Height="97" Margin="0,5,0.4,0">
+                    <TextBlock x:Name="foodInformation1" Margin="10,10,10.4,10" Text="This food is pizza. It is very delicious. I hope you would like it." FontSize="18" Height="81" TextWrapping="Wrap"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0.4,0" Width="230" Height="41">
+                    <TextBlock x:Name="priceTxt" Text="25$" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 5, 5, 5" FontSize="14"/>
+                    <TextBlock Text="Number: " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5, 5, 5, 5" FontSize="14"/>
+                    <TextBlock x:Name="numberTxt" Text="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5, 5, 5, 5" FontSize="14"/>
+                    <Button x:Name="button" Content="Add to cart" Margin="5,7,0,1.8" Width="106" Click="button_Click"/>
+                </StackPanel>
 
-        </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -19,7 +19,7 @@ namespace Joojizza
     /// </summary>
     public partial class Clock : Window
     {
-        public int result { set; get; }
+        public static int result { set; get; }
         public Clock()
         {
             InitializeComponent();
@@ -30,22 +30,26 @@ namespace Joojizza
             
             if(button1.IsChecked == true)
             {
-                result = 1;
+                
+                AdminPanel.clock1 = 1;
                 this.Close();
             }
             else if(button2.IsChecked == true)
             {
-                result = 2;
+                
+                AdminPanel.clock2 = 1;
                 this.Close();
             }
             else if(button3.IsChecked == true)
             {
-                result = 3;
+                
+                AdminPanel.clock3 = 1;
                 this.Close();
             }
             else if(button4.IsChecked == true)
             {
-                result = 4;
+                
+                AdminPanel.clock4 = 1;
                 this.Close();
             }
             else

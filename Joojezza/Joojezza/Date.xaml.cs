@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Joojizza
 {
@@ -20,7 +22,7 @@ namespace Joojizza
     /// </summary>
     public partial class Date : UserControl
     {
-        public string choosenDate;
+        public static string choosenDate;
         public Date()
         {
             InitializeComponent();
@@ -31,7 +33,9 @@ namespace Joojizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            choosenDate = calender.SelectedDate.ToString();
+
+            choosenDate = calender.SelectedDate.Value.ToString("dd/MM/yyyy");
+            AdminPanel.date = choosenDate.ToString();
             Clock clock = new Clock();
             clock.Show();
             

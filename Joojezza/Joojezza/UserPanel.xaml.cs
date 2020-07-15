@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Joojizza
 {
@@ -19,6 +21,12 @@ namespace Joojizza
     /// </summary>
     public partial class UserPanel : Window
     {
+        public static string date = "";
+        public static int clock = 0;
+        bool same = false;
+        int number = 0;
+        int set = 0;
+        int clicking = 0;
         public UserPanel()
         {
             InitializeComponent();
@@ -46,6 +54,15 @@ namespace Joojizza
                     principal.Children.Add(new Date());
                     break;
                 case 1:
+                    if (date == "" || clock == 0)
+                    {
+                        MessageBox.Show("First you have to choose date and time", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        principal.Children.Clear();
+                        FoodShowing();
+                    }
                     break;
                 case 2:
                     break;
@@ -70,6 +87,68 @@ namespace Joojizza
             Profile profile = new Profile();
             profile.Show();
             this.Close();
+        }
+
+        private void FoodShowing()
+        {
+            set = 0;
+            SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("select * from Food", SqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && sqlDataReader[2].ToString() == clock.ToString() && number == 0)
+                {
+                    same = true;
+                    foodCard1.numberTxt.Text = sqlDataReader["number"].ToString();
+                    foodCard1.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard1.foodInformation1.Text = sqlDataReader["description"].ToString();
+                    foodCard1.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard1.Visibility = Visibility.Visible;
+                    number++;
+                }
+
+                if (sqlDataReader["date"] == date && sqlDataReader["time"] == clock.ToString() && number == 1)
+                {
+                    same = true;
+                    foodCard2.numberTxt.Text = sqlDataReader["number"].ToString();
+                    foodCard2.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard2.foodInformation1.Text = sqlDataReader["description"].ToString();
+                    foodCard2.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard2.Visibility = Visibility.Visible;
+                    number++;
+                }
+
+                if (sqlDataReader["date"] == date && sqlDataReader["time"] == clock.ToString() && number == 2)
+                {
+                    same = true;
+                    foodCard3.numberTxt.Text = sqlDataReader["number"].ToString();
+                    foodCard3.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard3.foodInformation1.Text = sqlDataReader["description"].ToString();
+                    foodCard3.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard3.Visibility = Visibility.Visible;
+                    number = 0;
+                    set++;
+                    next.Visibility = Visibility.Visible;
+                    if (set == clicking + 1)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void next_Click(object sender, RoutedEventArgs e)
+        {
+            clicking++;
+            FoodShowing();
+        }
+
+        private void previous_Click(object sender, RoutedEventArgs e)
+        {
+            clicking++;
+            FoodShowing();
         }
     }
 }

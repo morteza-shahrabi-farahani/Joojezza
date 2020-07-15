@@ -65,3 +65,4 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\FoodCard.g.
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\FoodCard.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Clock.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Clock.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\GeneratedInternalTypeHelper.g.cs
