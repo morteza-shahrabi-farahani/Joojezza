@@ -26,13 +26,17 @@ namespace Joojizza
         public static int clock2 = 0;
         public static int clock3 = 0;
         public static int clock4 = 0;
+        public static int price { set; get; }
+        public static bool cart { set; get; }
         bool same = false;
         int number = 0;
         int set = 0;
         int clicking = 0;
+        public static List<string> names = new List<string>();
         public UserPanel()
         {
             InitializeComponent();
+            cart = false;
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -54,9 +58,21 @@ namespace Joojizza
             {
                 case 0:
                     principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
                     principal.Children.Add(new Date());
                     break;
                 case 1:
+                    cart = false;
+                    principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
                     if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0 ))
                     {
                         principal.Children.Clear();
@@ -69,8 +85,32 @@ namespace Joojizza
                     }
                     break;
                 case 2:
+                    cart = true;
+                    principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
+                    if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0))
+                    {
+                        principal.Children.Clear();
+                        MessageBox.Show("First you have to choose date and time", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        cart = true;
+                        CartShowing();
+                    }
                     break;
                 case 3:
+                    principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
+                    principal.Children.Add(new BankAccount());
                     break;
                 case 4:
                     break;
@@ -80,7 +120,96 @@ namespace Joojizza
 
             }
 
-            private void MoveCursorMenu(int index)
+        private void CartShowing()
+        {
+            set = 0;
+            SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("select * from Cart", SqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                if (clicking != 0)
+                {
+                    previous.IsEnabled = true;
+                }
+                else
+                {
+                    previous.IsEnabled = false;
+                }
+                if (clicking < set)
+                {
+                    next.IsEnabled = true;
+                }
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 0)
+                {
+                    same = true;
+                    foodCard1.numberTxt.Text = sqlDataReader["number"].ToString();
+                    foodCard1.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
+                    foodCard1.foodInformation1.Text = sqlDataReader["description"].ToString();
+                    foodCard1.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard1.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard1.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
+                    foodCard1.Visibility = Visibility.Visible;
+                    number++;
+                    
+                    continue;
+                }
+
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 1)
+                {
+                    same = true;
+                    foodCard2.numberTxt.Text = sqlDataReader["number"].ToString();
+                    foodCard2.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
+                    foodCard2.foodInformation1.Text = sqlDataReader["description"].ToString();
+                    foodCard2.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard2.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard2.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
+                    foodCard2.Visibility = Visibility.Visible;
+                    number++;
+
+                    continue;
+
+                }
+
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 2)
+                {
+                    same = true;
+                    foodCard3.numberTxt.Text = sqlDataReader["number"].ToString();
+                    foodCard3.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
+                    foodCard3.foodInformation1.Text = sqlDataReader["description"].ToString();
+                    foodCard3.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard3.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard3.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard3.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
+                    foodCard3.Visibility = Visibility.Visible;
+                    
+                    number = 0;
+                    set++;
+                    next.Visibility = Visibility.Visible;
+                    next.IsEnabled = true;
+                    if (set > 1)
+                    {
+                        previous.Visibility = Visibility.Visible;
+                    }
+                    if (set == clicking + 1)
+                    {
+                        break;
+                    }
+                    if (clicking >= set)
+                    {
+                        next.IsEnabled = false;
+                    }
+                    if (clicking == 0)
+                    {
+                        previous.IsEnabled = false;
+                    }
+                }
+            }
+        }
+          
+
+        private void MoveCursorMenu(int index)
         {
             transitioning.OnApplyTemplate();
             gridCursor.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
@@ -102,57 +231,112 @@ namespace Joojizza
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read())
             {
-                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[2].ToString() == clock1.ToString() || sqlDataReader[2].ToString() == clock2.ToString() || sqlDataReader[2].ToString() == clock3.ToString() || sqlDataReader[2].ToString() == clock4.ToString()) && number == 0)
+                if (clicking != 0)
+                {
+                    previous.IsEnabled = true;
+                }
+                else
+                {
+                    previous.IsEnabled = false;
+                }
+                if (clicking < set)
+                {
+                    next.IsEnabled = true;
+                }
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 0)
                 {
                     same = true;
                     foodCard1.numberTxt.Text = sqlDataReader["number"].ToString();
-                    foodCard1.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard1.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
                     foodCard1.foodInformation1.Text = sqlDataReader["description"].ToString();
                     foodCard1.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard1.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard1.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard1.Visibility = Visibility.Visible;
                     number++;
+                    continue;
                 }
 
-                if (sqlDataReader["date"] == date && (sqlDataReader[2].ToString() == clock1.ToString() || sqlDataReader[2].ToString() == clock2.ToString() || sqlDataReader[2].ToString() == clock3.ToString() || sqlDataReader[2].ToString() == clock4.ToString()) && number == 1)
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 1)
                 {
                     same = true;
                     foodCard2.numberTxt.Text = sqlDataReader["number"].ToString();
-                    foodCard2.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard2.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
                     foodCard2.foodInformation1.Text = sqlDataReader["description"].ToString();
                     foodCard2.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard2.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard2.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard2.Visibility = Visibility.Visible;
                     number++;
+                    continue;
+
                 }
 
-                if (sqlDataReader["date"] == date && (sqlDataReader[2].ToString() == clock1.ToString() || sqlDataReader[2].ToString() == clock2.ToString() || sqlDataReader[2].ToString() == clock3.ToString() || sqlDataReader[2].ToString() == clock4.ToString()) && number == 2)
+                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 2)
                 {
                     same = true;
                     foodCard3.numberTxt.Text = sqlDataReader["number"].ToString();
-                    foodCard3.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard3.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
                     foodCard3.foodInformation1.Text = sqlDataReader["description"].ToString();
                     foodCard3.nameTxt.Text = sqlDataReader["name"].ToString();
+                    foodCard3.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard3.typeTxt.Content = sqlDataReader["type"].ToString();
+                    foodCard3.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard3.Visibility = Visibility.Visible;
                     number = 0;
                     set++;
                     next.Visibility = Visibility.Visible;
+                    next.IsEnabled = true;
+                    if (set > 1)
+                    {
+                        previous.Visibility = Visibility.Visible;
+                    }
                     if (set == clicking + 1)
                     {
                         break;
                     }
+                    if (clicking >= set)
+                    {
+                        next.IsEnabled = false;
+                    }
+                    if (clicking == 0)
+                    {
+                        previous.IsEnabled = false;
+                    }
                 }
+
+
             }
         }
 
         private void next_Click(object sender, RoutedEventArgs e)
         {
             clicking++;
-            FoodShowing();
+            previous.Visibility = Visibility.Visible;
+            if (cart == false)
+            {
+                FoodShowing();
+            }
+            else
+            {
+                CartShowing();
+            }
+            
         }
 
         private void previous_Click(object sender, RoutedEventArgs e)
         {
-            clicking++;
-            FoodShowing();
+            clicking--;
+            number = 0;
+            next.IsEnabled = true;
+            if (cart == false)
+            {
+                FoodShowing();
+            }
+            else
+            {
+                CartShowing();
+            }
         }
     }
 }

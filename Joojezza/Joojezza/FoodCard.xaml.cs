@@ -22,18 +22,30 @@ namespace Joojizza
     /// </summary>
     public partial class FoodCard : UserControl
     {
-        public static string description;
-        public static int number;
-        public static int pirce;
+        public static string description { set; get; }
+        public static int number { set; get; }
+        public static int price { set; get; }
+        public static int id { set; get; }
+        public static string name { set; get; }
+        public static string type { set; get; }
+        public static string imageLocation { set; get; }
+
         public FoodCard()
         {
             InitializeComponent();
             foodInformation1.Text = description;
             numberTxt.Text = number.ToString();
-            priceTxt.Text = priceTxt.ToString();
+            priceTxt.Text = price.ToString();
             if(MainWindow.position == "user")
             {
-                button.Content = "Add to cart";
+                if (UserPanel.cart = false)
+                {
+                    button.Content = "Add to cart";
+                } 
+                else
+                {
+                    button.Content = "number";
+                }
             }
             else
             {
@@ -45,28 +57,74 @@ namespace Joojizza
         {
             if(MainWindow.position == "user")
             {
-               
-                SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
-                sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("insert into Cart ([name],[date],[Time1],[number],[type],[description],[price],[imageFile],[Time2],[Time3],[Time4],[userID]) values(@name,@date,@Time1,@number,@type,@description,@price,@imageFile,@Time2,@Time3,@userID)", sqlConnection);
-                sqlCommand.Parameters.Add("@name", nameTxt.Text);
-                sqlCommand.Parameters.Add("@date", UserPanel.date);
-                sqlCommand.Parameters.Add("@Time1", UserPanel.clock1);
-                sqlCommand.Parameters.Add("@Time2", UserPanel.clock2);
-                sqlCommand.Parameters.Add("@Time3", UserPanel.clock3);
-                sqlCommand.Parameters.Add("@Time4", UserPanel.clock4);
-                sqlCommand.Parameters.Add("@number", numberTxt.Text);
-                sqlCommand.Parameters.Add("@type", typeTxt.Content);
-                sqlCommand.Parameters.Add("@description", foodInformation1.Text);
-                sqlCommand.Parameters.Add("@price", priceTxt.Text);
-                sqlCommand.Parameters.Add("@imageFile", foodImage1.Source);
-                sqlCommand.Parameters.Add("@userID", UserLogin.id);
-                sqlCommand.ExecuteNonQuery();
-                sqlConnection.Close();
+                if (UserPanel.cart == false)
+                {
+                    description = foodInformation1.Text;
+                    number = int.Parse(numberTxt.Text.ToString());
+                    price = int.Parse(priceTxt.Text.Split('$')[0]);
+                    type = typeTxt.Content.ToString();
+                    name = nameTxt.Text.ToString();
+                    imageLocation = foodImage1.Source.ToString();
+
+                    SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+                    sqlConnection.Open();
+                    SqlCommand sqlCommand = new SqlCommand("select * from Food", sqlConnection);
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                    while (sqlDataReader.Read())
+                    {
+                        if (sqlDataReader["name"].ToString() == nameTxt.Text && sqlDataReader["number"].ToString() == numberTxt.Text && sqlDataReader["description"].ToString() == foodInformation1.Text)
+                        {
+                            id = int.Parse(sqlDataReader["id"].ToString());
+                        }
+                    }
+
+                    MoreInformation moreInformation = new MoreInformation();
+                    moreInformation.Show();
+                }
+                else
+                {
+                    description = foodInformation1.Text;
+                    number = int.Parse(numberTxt.Text.ToString());
+                    price = int.Parse(priceTxt.Text.Split('$')[0]);
+                    type = typeTxt.Content.ToString();
+                    name = nameTxt.Text.ToString();
+                    imageLocation = foodImage1.Source.ToString();
+
+                    SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+                    sqlConnection.Open();
+                    SqlCommand sqlCommand = new SqlCommand("select * from Food", sqlConnection);
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                    while (sqlDataReader.Read())
+                    {
+                        if (sqlDataReader["name"].ToString() == nameTxt.Text)
+                        {
+                            id = int.Parse(sqlDataReader["id"].ToString());
+                        }
+                    }
+
+                    MoreInformation moreInformation = new MoreInformation();
+                    moreInformation.Show();
+                }
             }
             else
             {
-                
+                SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("select * from Cart", sqlConnection);
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                {
+                    if(sqlDataReader["name"].ToString() == nameTxt.Text && sqlDataReader["number"].ToString() == numberTxt.Text && sqlDataReader["description"].ToString() == foodInformation1.Text)
+                    {
+                        id = int.Parse(sqlDataReader["id"].ToString());
+                    }
+                }
+
+                EditFood editFood = new EditFood();
+                editFood.Show();
             }
         }
     }

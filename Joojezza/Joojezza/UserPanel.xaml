@@ -50,15 +50,15 @@
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="FormatListBulleted" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-                        <TextBlock Text="List" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Kind="Cart" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
+                        <TextBlock Text="Cart" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="TruckDelivery" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-                        <TextBlock Text="Delivery" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Kind="BankAdd" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
+                        <TextBlock Text="Bank Account" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
 

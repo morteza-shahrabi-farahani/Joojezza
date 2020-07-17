@@ -29,7 +29,11 @@
                 </StackPanel>
 
             </StackPanel>
-            <Label x:Name="typeTxt" Content="Pizza" HorizontalAlignment="Left" Margin="0,277,0,0" VerticalAlignment="Top" Background="#FF24DA24" FontSize="12"/>
+            <Label x:Name="typeTxt" Content="Pizza" HorizontalAlignment="Left" Margin="0,277,0,0" VerticalAlignment="Top" Background="#FF24DA24" FontSize="12">
+                <Label.Effect>
+                    <DropShadowEffect ShadowDepth="10"/>
+                </Label.Effect>
+            </Label>
         </Grid>
     </Grid>
 </UserControl>

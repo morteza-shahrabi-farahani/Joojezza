@@ -36,6 +36,7 @@ namespace Joojizza
 
             choosenDate = calender.SelectedDate.Value.ToString("dd/MM/yyyy");
             AdminPanel.date = choosenDate.ToString();
+            UserPanel.date = choosenDate.ToString();
             Clock clock = new Clock();
             clock.Show();
             

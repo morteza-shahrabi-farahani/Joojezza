@@ -30,27 +30,27 @@ namespace Joojizza
             
             if(button1.IsChecked == true)
             {
-                
+                UserPanel.clock1 = 1;
                 AdminPanel.clock1 = 1;
                 this.Close();
             }
             else if(button2.IsChecked == true)
             {
-                
+                UserPanel.clock2 = 1;
                 AdminPanel.clock2 = 1;
                 this.Close();
             }
             else if(button3.IsChecked == true)
             {
-                
+                UserPanel.clock3 = 1;
                 AdminPanel.clock3 = 1;
                 this.Close();
             }
             else if(button4.IsChecked == true)
             {
                 
+                UserPanel.clock4 = 1;
                 AdminPanel.clock4 = 1;
-                
                 this.Close();
             }
             else

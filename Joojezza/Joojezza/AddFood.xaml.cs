@@ -23,6 +23,7 @@ namespace Joojizza
     {
         string imageLocation;
         int counter;
+        int foodCounter;
         public AddFood()
         {
             InitializeComponent();
@@ -65,56 +66,80 @@ namespace Joojizza
                 {
                     same = true;
                 }
+
+                if(AdminPanel.date == sqlDataReader["date"].ToString())
+                {
+                    foodCounter++;
+                }
+
                 counter++;
             }
-            sqlDataReader.Close();
 
-            if (same)
-            {
-                MessageBox.Show("We had saved this food before.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
             
+            sqlDataReader.Close();
+            if (foodCounter >= 7)
+            {
+                MessageBox.Show("We can`t have more than 7 food for a day.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             else
             {
-                try
+                if (same)
                 {
-                    string date = AdminPanel.date;
-                    string time1, time2, time3, time4;
-                    time1 = AdminPanel.clock1.ToString();
-                    time2 = AdminPanel.clock2.ToString();
-                    time3 = AdminPanel.clock3.ToString();
-                    time4 = AdminPanel.clock4.ToString();
-                    ComboBoxItem unknown = (ComboBoxItem)typeComboBox.SelectedItem;
-                    string type = unknown.Content.ToString();
-                    
-                    SqlCommand sqlCommand2 = new SqlCommand("insert into Food ([date],[Time1],[Time2],[Time3],[Time4],[number],[type],[name],[description],[price],[imageFile],[id]) values(@date,@Time1,@Time2,@Time3,@Time4,@number,@type,@name,@description,@price,@imageFile,@id)", sqlConnection);
-                    sqlCommand2.Parameters.Add("@name", nameTxt.Text);
-                    sqlCommand2.Parameters.Add("@date", date);
-                    sqlCommand2.Parameters.Add("@Time1", time1);
-                    sqlCommand2.Parameters.Add("@Time2", time2);
-                    sqlCommand2.Parameters.Add("@Time3", time3);
-                    sqlCommand2.Parameters.Add("@Time4", time4);
-                    sqlCommand2.Parameters.Add("@number", numberTxt.Text);
-                    sqlCommand2.Parameters.Add("@type", type);
-                    sqlCommand2.Parameters.Add("@description", descriptionTxt.Text);
-                    sqlCommand2.Parameters.Add("@price", priceTxt.Text);
-                    if (imageLocation != "")
+                    MessageBox.Show("We had saved this food before.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                else
+                {
+                    if (nameTxt.Text == "" || numberTxt.Text == "" || descriptionTxt.Text == "" || priceTxt.Text == "")
                     {
-                        sqlCommand2.Parameters.Add("@imageFile", imageLocation);
+                        MessageBox.Show("invalid inputs", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
-                        sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png");
-                    }
-                    sqlCommand2.Parameters.Add("@id", counter + 1);
-                    sqlCommand2.ExecuteNonQuery();
-                    sqlConnection.Close();
+                        try
+                        {
 
-                    this.Close();
-                }
-                catch
-                {
-                    MessageBox.Show("Invalid inputs", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            string date = AdminPanel.date;
+                            string time1, time2, time3, time4;
+                            time1 = AdminPanel.clock1.ToString();
+                            time2 = AdminPanel.clock2.ToString();
+                            time3 = AdminPanel.clock3.ToString();
+                            time4 = AdminPanel.clock4.ToString();
+                            ComboBoxItem unknown = (ComboBoxItem)typeComboBox.SelectedItem;
+                            string type = unknown.Content.ToString();
+
+                            SqlCommand sqlCommand2 = new SqlCommand("insert into Food ([date],[Time1],[Time2],[Time3],[Time4],[number],[type],[name],[description],[price],[imageFile],[id],[chief]) values(@date,@Time1,@Time2,@Time3,@Time4,@number,@type,@name,@description,@price,@imageFile,@id,@chief)", sqlConnection);
+                            sqlCommand2.Parameters.Add("@name", nameTxt.Text);
+                            sqlCommand2.Parameters.Add("@date", date);
+                            sqlCommand2.Parameters.Add("@Time1", time1);
+                            sqlCommand2.Parameters.Add("@Time2", time2);
+                            sqlCommand2.Parameters.Add("@Time3", time3);
+                            sqlCommand2.Parameters.Add("@Time4", time4);
+                            sqlCommand2.Parameters.Add("@number", int.Parse(numberTxt.Text));
+                            sqlCommand2.Parameters.Add("@type", type);
+                            sqlCommand2.Parameters.Add("@description", descriptionTxt.Text);
+                            sqlCommand2.Parameters.Add("@price", int.Parse(priceTxt.Text));
+                            if (imageLocation != "")
+                            {
+                                sqlCommand2.Parameters.Add("@imageFile", imageLocation);
+                            }
+                            else
+                            {
+                                sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png");
+                            }
+                            sqlCommand2.Parameters.Add("@chief", ChiefTxt.Text);
+                            sqlCommand2.Parameters.Add("@id", counter + 1);
+
+                            sqlCommand2.ExecuteNonQuery();
+                            sqlConnection.Close();
+
+                            this.Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Invalid inputs", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
                 }
             }
         }

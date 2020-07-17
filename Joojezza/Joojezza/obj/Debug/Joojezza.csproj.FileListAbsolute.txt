@@ -68,3 +68,9 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Clock.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\GeneratedInternalTypeHelper.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\AddFood.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\AddFood.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\EditFood.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\EditFood.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\MoreInformation.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\MoreInformation.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\BankAccount.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\BankAccount.baml

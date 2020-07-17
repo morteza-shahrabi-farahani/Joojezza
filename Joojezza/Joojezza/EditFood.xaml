@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Joojizza"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        Title="AddFood" Height="593.817" Width="355.273" WindowStyle="None">
+        Title="AddFood" Height="670.714" Width="355.273" WindowStyle="None">
     <Grid Margin="0,0,-6.4,0.2">
         <StackPanel Orientation="Vertical" OpacityMask="#FFF90505" Margin="10,0,10.2,-0.8">
             <StackPanel Orientation="Vertical" Margin="0,5,5.2,0" Background="DarkGray" Height="179">
@@ -18,17 +18,18 @@
                 <materialDesign:PackIcon Kind="Camera"/>
             </Button>
             <TextBox x:Name="nameTxt" materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,5,-0.8,5" Height="44" FontSize="13"/>
-            <TextBox x:Name="descriptionTxt" materialDesign:HintAssist.Hint="Description" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
+            <TextBox x:Name="descriptionTxt" materialDesign:HintAssist.Hint="food ingredients" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
             <TextBox x:Name="priceTxt" materialDesign:HintAssist.Hint="Price" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
             <TextBox x:Name="numberTxt" materialDesign:HintAssist.Hint="Number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
-            <ComboBox x:Name="typeComboBox" VerticalAlignment="Stretch" Margin="5,15,5.2,5">
+            <ComboBox x:Name="typeComboBox" VerticalAlignment="Stretch" Margin="0,15,5.2,5">
                 <ComboBoxItem Content="Fast food"/>
                 <ComboBoxItem Content="Iranian food"/>
                 <ComboBoxItem Content="Dessert"/>
                 <ComboBoxItem Content="Drinks"/>
             </ComboBox>
-
+            <TextBox x:Name="ChiefTxt" materialDesign:HintAssist.Hint="Chief" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
         </StackPanel>
-        <Button x:Name="editBtn" Content="Edit" Margin="123,499,149.2,43" Height="Auto" Click="addBtn_Click"/>
+        <Button x:Name="editBtn" Content="Edit" Margin="46,564,226.2,62.8" Height="Auto" Click="editBtn_Click" RenderTransformOrigin="0.93,0.592"/>
+        <Button x:Name="resetBtn" Content="Reset" Margin="213,564,59.2,62.8" Height="Auto" Click="resetBtn_Click" RenderTransformOrigin="0.93,0.592"/>
     </Grid>
 </Window>

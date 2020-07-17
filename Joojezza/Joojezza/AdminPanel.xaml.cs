@@ -26,6 +26,7 @@ namespace Joojizza
         public static int clock2 { set; get; }
         public static int clock3 { set; get; }
         public static int clock4 { set; get; }
+        
         bool same = false;
         int number = 0;
         int set = 0;
@@ -127,7 +128,7 @@ namespace Joojizza
                 {
                     same = true;
                     foodCard1.numberTxt.Text = sqlDataReader["number"].ToString();
-                    foodCard1.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard1.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
                     foodCard1.foodInformation1.Text = sqlDataReader["description"].ToString();
                     foodCard1.nameTxt.Text = sqlDataReader["name"].ToString();
                     foodCard1.typeTxt.Content = sqlDataReader["type"].ToString();
@@ -141,7 +142,7 @@ namespace Joojizza
                 {
                     same = true;
                     foodCard2.numberTxt.Text = sqlDataReader["number"].ToString();
-                    foodCard2.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard2.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
                     foodCard2.foodInformation1.Text = sqlDataReader["description"].ToString();
                     foodCard2.nameTxt.Text = sqlDataReader["name"].ToString();
                     foodCard2.typeTxt.Content = sqlDataReader["type"].ToString();
@@ -156,7 +157,7 @@ namespace Joojizza
                 {
                     same = true;
                     foodCard3.numberTxt.Text = sqlDataReader["number"].ToString();
-                    foodCard3.priceTxt.Text = sqlDataReader["price"].ToString();
+                    foodCard3.priceTxt.Text = sqlDataReader["price"].ToString() + "$";
                     foodCard3.foodInformation1.Text = sqlDataReader["description"].ToString();
                     foodCard3.nameTxt.Text = sqlDataReader["name"].ToString();
                     foodCard3.typeTxt.Content = sqlDataReader["type"].ToString();
