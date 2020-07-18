@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace Joojizza
 {
@@ -63,6 +64,7 @@ namespace Joojizza
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
+                    bankAccount.Visibility = Visibility.Hidden;
                     principal.Children.Add(new Date());
                     break;
                 case 1:
@@ -72,6 +74,7 @@ namespace Joojizza
                     foodCard2.Visibility = Visibility.Hidden;
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
+                    bankAccount.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
                     if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0 ))
                     {
@@ -92,6 +95,7 @@ namespace Joojizza
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
+                    bankAccount.Visibility = Visibility.Hidden;
                     if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0))
                     {
                         principal.Children.Clear();
@@ -110,15 +114,29 @@ namespace Joojizza
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
-                    principal.Children.Add(new BankAccount());
+                    bankAccount.Visibility = Visibility.Visible;
                     break;
                 case 4:
+                    principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
+                    bankAccount.Visibility = Visibility.Hidden;
+                    Factor factor = new Factor();
+                    factor.Visibility = Visibility.Visible;
                     break;
                 case 5:
                     break;
             }
 
             }
+
+        private void Signature()
+        {
+            
+        }
 
         private void CartShowing()
         {

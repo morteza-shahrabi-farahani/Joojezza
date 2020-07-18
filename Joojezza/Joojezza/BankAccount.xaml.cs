@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Joojizza
 {
@@ -36,11 +39,11 @@ namespace Joojizza
                 line.Stroke = System.Windows.SystemColors.WindowFrameBrush;
                 line.X1 = current.X;
                 line.Y1 = current.Y;
-                line.X2 = e.GetPosition(this).X;
-                line.Y2 = e.GetPosition(this).Y;
+                line.X2 = e.GetPosition(canvas).X;
+                line.Y2 = e.GetPosition(canvas).Y;
 
-                current = e.GetPosition(this);
-                canvas.Children.Add(line);
+                current = e.GetPosition(canvas);
+                
             }
         }
 
@@ -48,8 +51,32 @@ namespace Joojizza
         {
             if(e.ButtonState == MouseButtonState.Pressed)
             {
-                current = e.GetPosition(this);
+                current = e.GetPosition(canvas);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            var signaturePath = "G:/works/university/AP/Joojezza/Joojezza/logo/signature" + UserLogin.id + ".jpg";
+            FileStream fileStream = new FileStream(signaturePath, FileMode.Create);
+            RenderTargetBitmap temp = new RenderTargetBitmap((int)canvas.Width, (int)canvas.Height, 96, 96, PixelFormats.Default);
+            temp.Render(canvas);
+            JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();
+            jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(temp));
+            jpegBitmapEncoder.Save(fileStream);    
+            fileStream.Close();
+
+            SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            sqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("update Cart set signature = @signature, cardNumber = @cardNumber where userID = @userID", sqlConnection);
+            sqlCommand.Parameters.Add("@userId", UserLogin.id.ToString());
+            sqlCommand.Parameters.Add("@cardNumber", cardTxt.Text.ToString());
+            sqlCommand.Parameters.Add("@signature", signaturePath);
+            sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
+
+        
     }
 }

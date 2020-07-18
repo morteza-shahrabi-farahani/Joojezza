@@ -6,16 +6,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Joojizza"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBox x:Name="cardTxt" materialDesign:HintAssist.Hint="Card number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="142,39,100,356.6" FontSize="13"/>
-        <Canvas x:Name="canvas" MouseMove="canvas_MouseMove" Margin="142,117,38,104.6" >
-            <Canvas.Background>
-                <SolidColorBrush Color="White"  Opacity="0"/>
-            </Canvas.Background>
-        </Canvas>
+             d:DesignHeight="526" Width="748">
 
-        <Label Content="Signature" HorizontalAlignment="Left" Margin="59,168,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="392,384,0,0" VerticalAlignment="Top" Width="75"/>
+    <Grid>
+        <TextBox x:Name="cardTxt" materialDesign:HintAssist.Hint="Card number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,302,10,175.4" FontSize="13"/>
+        <InkCanvas Name="canvas" MouseMove="canvas_MouseMove" Background="DarkGray" Height="275" Margin="0,0,0,251.4" Width="748"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="336,404,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
+
 </UserControl>

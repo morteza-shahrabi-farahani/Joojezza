@@ -126,6 +126,9 @@
     <Compile Include="EditRestaurantInformation.xaml.cs">
       <DependentUpon>EditRestaurantInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Factor.xaml.cs">
+      <DependentUpon>Factor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FoodCard.xaml.cs">
       <DependentUpon>FoodCard.xaml</DependentUpon>
     </Compile>
@@ -198,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditRestaurantInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Factor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

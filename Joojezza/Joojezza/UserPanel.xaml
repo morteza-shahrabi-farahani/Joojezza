@@ -80,7 +80,7 @@
 
         <Grid Margin="250 55 0 0">
             <Grid x:Name="principal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                
+
             </Grid>
 
             <local:FoodCard x:Name="foodCard1" HorizontalAlignment="Left" Height="424" Margin="10,66,0,0" VerticalAlignment="Top" Width="231" Visibility="Hidden"/>
@@ -88,6 +88,18 @@
             <local:FoodCard x:Name="foodCard3" HorizontalAlignment="Left" Height="424" Margin="511,66,0,0" VerticalAlignment="Top" Width="231" Visibility="Hidden"/>
             <Button x:Name="next" Content="Next page" HorizontalAlignment="Left" Margin="411,495,0,0" VerticalAlignment="Top" Width="130" Visibility="Hidden" Click="next_Click"/>
             <Button x:Name="previous" Content="Previous page" HorizontalAlignment="Left" Margin="234,495,0,0" VerticalAlignment="Top" Width="130" Visibility="Hidden" Click="previous_Click"/>
+            <local:BankAccount x:Name="bankAccount" HorizontalAlignment="Left" Height="526" Margin="10,10,0,0" VerticalAlignment="Top" Width="748" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
+                <local:BankAccount.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.128"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.798"/>
+                    </TransformGroup>
+                </local:BankAccount.RenderTransform>
+            </local:BankAccount>
+            <local:Factor HorizontalAlignment="Left" Height="527" Margin="10,0,0,0" VerticalAlignment="Top" Width="754"/>
+
         </Grid>
     </Grid>
 </Window>

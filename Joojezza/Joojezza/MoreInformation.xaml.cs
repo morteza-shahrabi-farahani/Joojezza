@@ -75,9 +75,12 @@ namespace Joojizza
                 }
                 else
                 {
+                    double result, temp;
+                    temp = double.Parse(FoodCard.price.ToString());
+                    result = (temp * 124 / 100);
                     SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
                     sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("insert into Cart ([name],[date],[Time1],[number],[type],[description],[price],[imageFile],[Time2],[Time3],[Time4],[userID],[chief],[customers],[Id]) values(@name,@date,@Time1,@number,@type,@description,@price,@imageFile,@Time2,@Time3,@Time4,@userID,@chief,@customers,@Id)", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand("insert into Cart ([name],[date],[Time1],[number],[type],[description],[price],[imageFile],[Time2],[Time3],[Time4],[userID],[chief],[customers],[Id],[username]) values(@name,@date,@Time1,@number,@type,@description,@price,@imageFile,@Time2,@Time3,@Time4,@userID,@chief,@customers,@Id,@username)", sqlConnection);
                     sqlCommand.Parameters.Add("@name", FoodCard.name);
                     sqlCommand.Parameters.Add("@date", UserPanel.date);
                     sqlCommand.Parameters.Add("@Time1", UserPanel.clock1);
@@ -87,9 +90,10 @@ namespace Joojizza
                     sqlCommand.Parameters.Add("@number", int.Parse(numberTxt.Text));
                     sqlCommand.Parameters.Add("@type", FoodCard.type);
                     sqlCommand.Parameters.Add("@description", FoodCard.description);
-                    sqlCommand.Parameters.Add("@price", FoodCard.price);
+                    sqlCommand.Parameters.Add("@price", result.ToString());
                     sqlCommand.Parameters.Add("@imageFile", FoodCard.imageLocation);
                     sqlCommand.Parameters.Add("@userID", UserLogin.id);
+                    sqlCommand.Parameters.Add("@username", UserLogin.name);
                     sqlCommand.Parameters.Add("@chief", chief);
                     sqlCommand.Parameters.Add("@customers", customers);
                     sqlCommand.Parameters.Add("@Id", counter + 1);
