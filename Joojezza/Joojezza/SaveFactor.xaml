@@ -1,0 +1,38 @@
+﻿<Window x:Class="Joojizza.SaveFactor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Joojizza"
+        mc:Ignorable="d"
+        Title="SaveFactor" Height="553.261" Width="748">
+    <Grid Margin="0,0,0,399.6">
+        <StackPanel Orientation="Horizontal" Background="Red" Margin="0,0,-0.4,66.2">
+            <TextBlock Text="Joojezza" Margin="10" FontFamily="Kristen ITC" FontSize="24"></TextBlock>
+            <Image Source="logo.png" Width="46" Margin="555, 5, 5, 5"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="0,55,508,-399">
+            <TextBlock x:Name="nameTxt" Margin="5" Height="44" Text="Name" TextWrapping="Wrap" FontSize="16" FontWeight="Bold"></TextBlock>
+            <TextBlock x:Name="pricesTxt" Margin="5" Text="Information" TextWrapping="Wrap" Height="150"></TextBlock>
+            <StackPanel Orientation="Horizontal" Height="40">
+                <RadioButton x:Name="online" Content="Online" Margin="5,0"/>
+                <RadioButton x:Name="presence" Content="Presence" Margin="50,0"/>
+            </StackPanel>
+            <Image x:Name="image" Height="166" Margin="5,0,0,0"/>
+            <StackPanel Orientation="Horizontal" Height="46">
+                <Button x:Name="save" Width="90" Content="Save" Margin="5, 0" Click="save_Click"/>
+                <Button x:Name="reset" Width="90" Content="Reset" Margin="45, 0" Click="reset_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <Border CornerRadius="15" Margin="240,60,10,-398.4" BorderBrush="Black" BorderThickness="5">
+            <StackPanel Orientation="Vertical" Margin="10,10,10,9.6">
+                <StackPanel Orientation="Horizontal" Height="35" Margin="0,0,-0.2,0">
+                    <TextBlock x:Name="today" Margin="10,0,0,0" Width="226"></TextBlock>
+                    <TextBlock x:Name="date" Margin="10,0,10,0" Width="215"></TextBlock>
+                </StackPanel>
+                <TextBlock x:Name="informationTxt" Height="385" Margin="10,10,10.4,10" Text="Information" TextWrapping="Wrap"></TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

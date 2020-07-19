@@ -1,0 +1,18 @@
+﻿<Window x:Class="Joojizza.RealSignature"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Joojizza"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        mc:Ignorable="d"
+        d:DesignHeight="526" Width="748">
+
+    <Grid>
+        
+        <InkCanvas Name="canvas" MouseMove="canvas_MouseMove" Background="DarkGray" Margin="0,0,-0.4,244.8" Height="252" Width="748"/>
+        <TextBox x:Name="cardTxt" materialDesign:HintAssist.Hint="Card number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,302,9.6,150.8" Height="44" FontSize="13"></TextBox>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="336,404,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+    </Grid>
+
+</Window>

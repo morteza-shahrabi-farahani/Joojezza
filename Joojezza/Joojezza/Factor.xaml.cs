@@ -27,6 +27,14 @@ namespace Joojizza
         List<double> prices = new List<double>();
         string cartText = "";
         string imageLocation;
+        bool correct = true;
+        Dictionary<string, int> food = new Dictionary<string, int>();
+        Dictionary<string, int> foodNumber = new Dictionary<string, int>();
+        Dictionary<string, string> foodDate = new Dictionary<string, string>();
+        Dictionary<string, string> foodClock1 = new Dictionary<string, string>();
+        Dictionary<string, string> foodClock2 = new Dictionary<string, string>();
+        Dictionary<string, string> foodClock3 = new Dictionary<string, string>();
+        Dictionary<string, string> foodClock4 = new Dictionary<string, string>();
         public Factor()
         {
             InitializeComponent();
@@ -50,26 +58,41 @@ namespace Joojizza
                     cartText = cartText + "price: " + sqlDataReader["price"].ToString() + "\n";
                     cartText = cartText + "\n";
 
+                    food.Add(sqlDataReader["name"].ToString(), int.Parse(sqlDataReader["number"].ToString()));
+                    foodDate.Add(sqlDataReader["name"].ToString(), sqlDataReader["date"].ToString());
+                    foodClock1.Add(sqlDataReader["name"].ToString(), sqlDataReader["Time1"].ToString());
+                    foodClock2.Add(sqlDataReader["name"].ToString(), sqlDataReader["Time2"].ToString());
+                    foodClock3.Add(sqlDataReader["name"].ToString(), sqlDataReader["Time3"].ToString());
+                    foodClock4.Add(sqlDataReader["name"].ToString(), sqlDataReader["Time4"].ToString());
+
                     nameTxt.Text = sqlDataReader["username"].ToString();
                     today.Text = DateTime.Now.ToString("dd/MM/yyyy");
                     date.Text = sqlDataReader["date"].ToString();
 
                     price = double.Parse(sqlDataReader["price"].ToString()) * int.Parse(sqlDataReader["number"].ToString());
                     prices.Add(price);
-                    imageLocation = sqlDataReader["imageFile"].ToString();
+                    imageLocation = sqlDataReader["signature"].ToString();
                 }
 
-                
-                
             }
+            sqlDataReader.Close();
 
-            foreach(double d in prices)
+
+            foreach (double d in prices)
             {
                 totalPrice = totalPrice + d;
                 pricesTxt.Text = "Total price: " + "\n" + totalPrice;
             }
+            if(imageLocation != "" && imageLocation != null)
+            {
+                image.Source = new BitmapImage(new Uri(imageLocation));
+            }
+            else
+            {
+                imageLocation = "G:/works/university/AP/Joojezza/Joojezza/logo/signature1111111121.jpg";
+            }
 
-            image.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
+            
         }
 
         private void reset_Click(object sender, RoutedEventArgs e)
@@ -89,6 +112,7 @@ namespace Joojizza
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
+            int counter2 = 0;
             string payment = "";
             bool check = false;
             int counter = 0;
@@ -118,18 +142,56 @@ namespace Joojizza
             }
             if (check)
             {
-                SqlCommand SqlCommand3 = new SqlCommand("insert into Orders (id, username, payment, date, totalPrice, Time1, Time2, Time3, Time4) values(@id, @username, @payment, @date, @totalPrice, @Time1, @Time2, @Time3, @Time4)", SqlConnection);
-                SqlCommand3.Parameters.Add("@date", UserPanel.date);
-                SqlCommand3.Parameters.Add("@username", UserLogin.name);
-                SqlCommand3.Parameters.Add("@id", counter + 1);
-                SqlCommand3.Parameters.Add("@payment", payment);
-                SqlCommand3.Parameters.Add("@totalPrice", totalPrice);
-                SqlCommand3.Parameters.Add("@Time1", UserPanel.clock1);
-                SqlCommand3.Parameters.Add("@Time2", UserPanel.clock2);
-                SqlCommand3.Parameters.Add("@Time3", UserPanel.clock3);
-                SqlCommand3.Parameters.Add("@Time4", UserPanel.clock4);
-                SqlCommand3.ExecuteNonQuery();
-                SqlConnection.Close();
+                SqlCommand sqlCommand4 = new SqlCommand("select * from Food", SqlConnection);
+                SqlDataReader sqlDataReader1 = sqlCommand4.ExecuteReader();
+                for(counter2 = 0; counter2 < food.Count; counter2++)
+                {
+                    while(sqlDataReader1.Read())
+                    {
+                        if(sqlDataReader1["name"].ToString() == food.ElementAt(counter2).Key)
+                        {
+
+                            if(int.Parse(sqlDataReader1["number"].ToString()) < food.ElementAt(counter2).Value)
+                            {
+                                correct = false;
+                                MessageBox.Show("We dont have enough " + food.ElementAt(counter2).Key, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                break;
+                            } 
+                            else
+                            {
+                                foodNumber.Add(sqlDataReader["name"].ToString(), int.Parse(sqlDataReader["number"].ToString()));
+                            }
+                        }
+                    }
+                }
+
+                if (correct)
+                {
+                    SqlCommand SqlCommand3 = new SqlCommand("insert into Orders (id, username, payment, date, totalPrice, Time1, Time2, Time3, Time4) values(@id, @username, @payment, @date, @totalPrice, @Time1, @Time2, @Time3, @Time4)", SqlConnection);
+                    SqlCommand3.Parameters.Add("@date", UserPanel.date);
+                    SqlCommand3.Parameters.Add("@username", UserLogin.name);
+                    SqlCommand3.Parameters.Add("@id", counter + 1);
+                    SqlCommand3.Parameters.Add("@payment", payment);
+                    SqlCommand3.Parameters.Add("@totalPrice", totalPrice);
+                    SqlCommand3.Parameters.Add("@Time1", UserPanel.clock1);
+                    SqlCommand3.Parameters.Add("@Time2", UserPanel.clock2);
+                    SqlCommand3.Parameters.Add("@Time3", UserPanel.clock3);
+                    SqlCommand3.Parameters.Add("@Time4", UserPanel.clock4);
+                    SqlCommand3.ExecuteNonQuery();
+
+                    SqlCommand sqlCommand5 = new SqlCommand("update Food set number = @number where name = @name, date = @date, Time1 = @Time1, Time2 = @TIme2, Time3 = @Time3, Time4 = @TIme4");
+                    for(counter2 = 0; counter2 < food.Count; counter2++)
+                    {
+                        sqlCommand5.Parameters.Add("@name", food.ElementAt(counter2).Key);
+                        sqlCommand5.Parameters.Add("@date", foodDate.ElementAt(counter2).Value);
+                        sqlCommand5.Parameters.Add("@Time1", foodClock1.ElementAt(counter2).Value);
+                        sqlCommand5.Parameters.Add("@Time2", foodClock2.ElementAt(counter2).Value);
+                        sqlCommand5.Parameters.Add("@Time3", foodClock3.ElementAt(counter2).Value);
+                        sqlCommand5.Parameters.Add("@Time4", foodClock4.ElementAt(counter2).Value);
+                        sqlCommand5.Parameters.Add("@number", foodNumber[food.ElementAt(counter2).Key] - food[food.ElementAt(counter2).Key]);
+                    }
+
+                }
             }
         }
     }

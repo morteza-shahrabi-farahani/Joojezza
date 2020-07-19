@@ -45,7 +45,14 @@ namespace Joojizza
                         chiefTxt.Text = "Chief: " + sqlDataReader["chief"].ToString();
                         customersTxt.Text = "Customers point: " + sqlDataReader["customers"].ToString();
                         chief = sqlDataReader["chief"].ToString();
-                        customers = int.Parse(sqlDataReader["customers"].ToString());
+                        if(sqlDataReader["customers"].ToString() == null)
+                        {
+                            customers = 5;
+                        }
+                        else
+                        {
+                            customers = int.Parse(sqlDataReader["customers"].ToString());
+                        }
                         number = int.Parse(sqlDataReader["number"].ToString());
                     }
                 }
@@ -61,7 +68,7 @@ namespace Joojizza
             }
             else
             {
-                AddToCart.Content = "Change number";
+                AddToCart.Content = "number";
             }
         }
 

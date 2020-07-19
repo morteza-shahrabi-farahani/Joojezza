@@ -76,3 +76,11 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\BankAccount
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\BankAccount.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Factor.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Factor.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\RealSignature.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\SaveFactor.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\RealSignature.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\SaveFactor.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\OrderShowing.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\OrderShowing.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Orders.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Orders.baml

@@ -24,7 +24,7 @@ namespace Joojizza
     {
         public static string description { set; get; }
         public static int number { set; get; }
-        public static int price { set; get; }
+        public static double price { set; get; }
         public static int id { set; get; }
         public static string name { set; get; }
         public static string type { set; get; }
@@ -86,7 +86,7 @@ namespace Joojizza
                 {
                     description = foodInformation1.Text;
                     number = int.Parse(numberTxt.Text.ToString());
-                    price = int.Parse(priceTxt.Text.Split('$')[0]);
+                    price = double.Parse(priceTxt.Text.Split('$')[0]);
                     type = typeTxt.Content.ToString();
                     name = nameTxt.Text.ToString();
                     imageLocation = foodImage1.Source.ToString();

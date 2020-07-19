@@ -64,7 +64,7 @@ namespace Joojizza
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
-                    bankAccount.Visibility = Visibility.Hidden;
+                    orderShowing.Visibility = Visibility.Hidden;
                     principal.Children.Add(new Date());
                     break;
                 case 1:
@@ -74,8 +74,9 @@ namespace Joojizza
                     foodCard2.Visibility = Visibility.Hidden;
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
-                    bankAccount.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
+                    orderShowing.Visibility = Visibility.Hidden;
+                    
                     if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0 ))
                     {
                         principal.Children.Clear();
@@ -95,7 +96,8 @@ namespace Joojizza
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
-                    bankAccount.Visibility = Visibility.Hidden;
+                    orderShowing.Visibility = Visibility.Hidden;
+
                     if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0))
                     {
                         principal.Children.Clear();
@@ -114,18 +116,9 @@ namespace Joojizza
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
-                    bankAccount.Visibility = Visibility.Visible;
+                    orderShowing.Visibility = Visibility.Visible;
                     break;
                 case 4:
-                    principal.Children.Clear();
-                    foodCard1.Visibility = Visibility.Hidden;
-                    foodCard2.Visibility = Visibility.Hidden;
-                    foodCard3.Visibility = Visibility.Hidden;
-                    next.Visibility = Visibility.Hidden;
-                    previous.Visibility = Visibility.Hidden;
-                    bankAccount.Visibility = Visibility.Hidden;
-                    Factor factor = new Factor();
-                    factor.Visibility = Visibility.Visible;
                     break;
                 case 5:
                     break;
@@ -355,6 +348,34 @@ namespace Joojizza
             {
                 CartShowing();
             }
+        }
+
+        private void payment_Click(object sender, RoutedEventArgs e)
+        {
+            int counter = 0;
+            SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("select * from Cart", SqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                counter++;
+            }
+            if(counter != 0)
+            {
+                RealSignature realSignature = new RealSignature();
+                realSignature.Show();
+            }
+            else
+            {
+                MessageBox.Show("You must add items to your cart first.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+        }
+
+        private void Show_Click(object sender, RoutedEventArgs e)
+        {
+            principal.Children.Add(new OrderShowing());
         }
     }
 }
