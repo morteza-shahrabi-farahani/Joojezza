@@ -83,6 +83,14 @@ namespace Joojizza
                     }
                     break;
                 case 2:
+                    principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
+                    orderShowing.Visibility = Visibility.Hidden;
+                    principal.Children.Add(new OrderShowing());
                     break;
                 case 3:
                     break;

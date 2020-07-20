@@ -34,7 +34,8 @@ namespace Joojizza
         Dictionary<string, string> foodClock2 = new Dictionary<string, string>();
         Dictionary<string, string> foodClock3 = new Dictionary<string, string>();
         Dictionary<string, string> foodClock4 = new Dictionary<string, string>();
-
+        List<string> names = new List<string>();
+        List<int> numbers = new List<int>();
         public SaveFactor()
         {
             InitializeComponent();
@@ -58,6 +59,8 @@ namespace Joojizza
                     cartText = cartText + "\n";
 
                     food.Add(sqlDataReader["name"].ToString(), int.Parse(sqlDataReader["number"].ToString()));
+                    names.Add(sqlDataReader["name"].ToString());
+                    numbers.Add(int.Parse(sqlDataReader["number"].ToString()));
                     foodDate.Add(sqlDataReader["name"].ToString(), sqlDataReader["date"].ToString());
                     foodClock1.Add(sqlDataReader["name"].ToString(), sqlDataReader["Time1"].ToString());
                     foodClock2.Add(sqlDataReader["name"].ToString(), sqlDataReader["Time2"].ToString());
@@ -171,7 +174,18 @@ namespace Joojizza
 
                 if (correct)
                 {
-                    SqlCommand SqlCommand3 = new SqlCommand("insert into Orders (id, username, payment, date, totalPrice, Time1, Time2, Time3, Time4, information, numberOfFood, today) values(@id, @username, @payment, @date, @totalPrice, @Time1, @Time2, @Time3, @Time4, @information, @numberOfFood, @today)", SqlConnection);
+                    int counter3;
+                    string finalFood = " ";
+                    string finalNumber = " ";
+                    for(counter3 = 0; counter3 < food.Count; counter3++)
+                    {
+                        finalFood = names[counter3] + " ";
+                    }
+                    for (counter3 = 0; counter3 < food.Count; counter3++)
+                    {
+                        finalNumber = numbers[counter3].ToString() + " ";
+                    }
+                    SqlCommand SqlCommand3 = new SqlCommand("insert into Orders (id, username, payment, date, totalPrice, Time1, Time2, Time3, Time4, information, numberOfFood, today, name, number) values(@id, @username, @payment, @date, @totalPrice, @Time1, @Time2, @Time3, @Time4, @information, @numberOfFood, @today, @name, @number)", SqlConnection);
                     SqlCommand3.Parameters.Add("@date", UserPanel.date);
                     SqlCommand3.Parameters.Add("@username", UserLogin.name);
                     SqlCommand3.Parameters.Add("@id", counter + 1);
@@ -184,6 +198,8 @@ namespace Joojizza
                     SqlCommand3.Parameters.Add("@information", cartText);
                     SqlCommand3.Parameters.Add("@numberOfFood", counter2);
                     SqlCommand3.Parameters.Add("@today", DateTime.Now.ToString("dd/MM/yyyy"));
+                    SqlCommand3.Parameters.Add("@name", finalFood);
+                    SqlCommand3.Parameters.Add("@number", finalNumber);
                     SqlCommand3.ExecuteNonQuery();
 
                     

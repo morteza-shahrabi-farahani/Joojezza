@@ -84,3 +84,11 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\OrderShowin
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\OrderShowing.baml
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Orders.g.cs
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Orders.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\FinalFactor.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\FinalFactor.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\NameSearch.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\NameSearch.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\InformationSearch.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\PriceSearch.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\InformationSearch.baml
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\PriceSearch.baml

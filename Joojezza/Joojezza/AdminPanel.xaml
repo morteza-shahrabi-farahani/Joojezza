@@ -50,8 +50,8 @@
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="FormatListBulleted" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-                        <TextBlock Text="List" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Kind="OrderAlphabeticalAscending" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
+                        <TextBlock Text="Orders" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
 
@@ -85,11 +85,12 @@
             <local:FoodCard x:Name="foodCard1" HorizontalAlignment="Left" Height="424" Margin="10,66,0,0" VerticalAlignment="Top" Width="231" Visibility="Hidden"/>
             <local:FoodCard x:Name="foodCard2" HorizontalAlignment="Left" Height="424" Margin="258,66,0,0" VerticalAlignment="Top" Width="231" Visibility="Hidden"/>
             <local:FoodCard x:Name="foodCard3" HorizontalAlignment="Left" Height="424" Margin="511,66,0,0" VerticalAlignment="Top" Width="231" Visibility="Hidden"/>
-            <Button x:Name="next" Content="Next page" HorizontalAlignment="Left" Margin="411,495,0,0" VerticalAlignment="Top" Width="130" Visibility="Hidden" Click="next_Click"/>
-            <Button x:Name="previous" Content="Previous page" HorizontalAlignment="Left" Margin="234,495,0,0" VerticalAlignment="Top" Width="130" Visibility="Hidden" Click="previous_Click"/>
+            <Button x:Name="next" Content="Next page" HorizontalAlignment="Left" Margin="511,495,0,0" VerticalAlignment="Top" Width="130" Visibility="Hidden" Click="next_Click"/>
+            <Button x:Name="previous" Content="Previous page" HorizontalAlignment="Left" Margin="130,495,0,0" VerticalAlignment="Top" Width="130" Visibility="Hidden" Click="previous_Click" RenderTransformOrigin="0.358,0.388"/>
             <Button x:Name="addBtn" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green" Click="addBtn_Click" Margin="712,10,32,505" Visibility="Hidden">
                 <materialDesign:PackIcon Kind="Add" Height="30" Width="30" />
             </Button>
+            <local:OrderShowing x:Name="orderShowing" HorizontalAlignment="Left" Height="535" Margin="10,0,0,0" VerticalAlignment="Top" Width="754"/>
         </Grid>
     </Grid>
 </Window>

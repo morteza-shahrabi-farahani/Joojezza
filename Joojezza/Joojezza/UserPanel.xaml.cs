@@ -65,6 +65,10 @@ namespace Joojizza
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
                     orderShowing.Visibility = Visibility.Hidden;
+                    payment.Visibility = Visibility.Hidden;
+                    nameSearch.Visibility = Visibility.Hidden;
+                    informationSearch.Visibility = Visibility.Hidden;
+                    priceSearch.Visibility = Visibility.Hidden;
                     principal.Children.Add(new Date());
                     break;
                 case 1:
@@ -76,7 +80,10 @@ namespace Joojizza
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
                     orderShowing.Visibility = Visibility.Hidden;
-                    
+                    payment.Visibility = Visibility.Hidden;
+                    nameSearch.Visibility = Visibility.Hidden;
+                    informationSearch.Visibility = Visibility.Hidden;
+                    priceSearch.Visibility = Visibility.Hidden;
                     if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0 ))
                     {
                         principal.Children.Clear();
@@ -97,7 +104,10 @@ namespace Joojizza
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
                     orderShowing.Visibility = Visibility.Hidden;
-
+                    payment.Visibility = Visibility.Visible;
+                    nameSearch.Visibility = Visibility.Hidden;
+                    informationSearch.Visibility = Visibility.Hidden;
+                    priceSearch.Visibility = Visibility.Hidden;
                     if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0))
                     {
                         principal.Children.Clear();
@@ -116,9 +126,25 @@ namespace Joojizza
                     foodCard3.Visibility = Visibility.Hidden;
                     next.Visibility = Visibility.Hidden;
                     previous.Visibility = Visibility.Hidden;
-                    orderShowing.Visibility = Visibility.Visible;
+                    orderShowing.Visibility = Visibility.Hidden;
+                    payment.Visibility = Visibility.Hidden;
+                    nameSearch.Visibility = Visibility.Hidden;
+                    informationSearch.Visibility = Visibility.Hidden;
+                    priceSearch.Visibility = Visibility.Hidden;
+                    principal.Children.Add(new OrderShowing());
                     break;
                 case 4:
+                    principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
+                    orderShowing.Visibility = Visibility.Hidden;
+                    payment.Visibility = Visibility.Hidden;
+                    nameSearch.Visibility = Visibility.Visible;
+                    informationSearch.Visibility = Visibility.Visible;
+                    priceSearch.Visibility = Visibility.Visible;
                     break;
                 case 5:
                     break;
@@ -216,6 +242,7 @@ namespace Joojizza
                         previous.IsEnabled = false;
                     }
                 }
+                number = 0;
             }
         }
           
@@ -318,6 +345,7 @@ namespace Joojizza
 
 
             }
+            number = 0;
         }
 
         private void next_Click(object sender, RoutedEventArgs e)
@@ -376,6 +404,24 @@ namespace Joojizza
         private void Show_Click(object sender, RoutedEventArgs e)
         {
             principal.Children.Add(new OrderShowing());
+        }
+
+        private void nameSearch_Click(object sender, RoutedEventArgs e)
+        {
+            NameSearch nameSearch = new NameSearch();
+            nameSearch.Show();
+        }
+
+        private void informationSearch_Click(object sender, RoutedEventArgs e)
+        {
+            InformationSearch informationSearch = new InformationSearch();
+            informationSearch.Show();
+        }
+
+        private void priceSearch_Click(object sender, RoutedEventArgs e)
+        {
+            PriceSearch priceSearch = new PriceSearch();
+            priceSearch.Show();
         }
     }
 }

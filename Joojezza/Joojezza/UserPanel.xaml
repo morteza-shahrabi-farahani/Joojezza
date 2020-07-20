@@ -64,8 +64,8 @@
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Cash" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-                        <TextBlock Text="Cash" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
+                        <TextBlock Text="Search" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
 
@@ -92,6 +92,9 @@
             
             <local:OrderShowing x:Name="orderShowing" HorizontalAlignment="Left" Height="527" Margin="10,0,0,0" VerticalAlignment="Top" Width="754" Visibility="Hidden"/>
 
+            <Button x:Name="nameSearch" Content="Search by name" Margin="282,146,309,367" Visibility="Hidden" Click="nameSearch_Click"></Button>
+            <Button x:Name="informationSearch" Content="Search by information" Margin="282,240,309,273" Visibility="Hidden" Click="informationSearch_Click"></Button>
+            <Button x:Name="priceSearch" Content="Search by price" Margin="282,333,309,180" Visibility="Hidden" Click="priceSearch_Click"></Button>
 
 
 

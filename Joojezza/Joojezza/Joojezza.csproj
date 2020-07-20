@@ -129,9 +129,13 @@
     <Compile Include="Factor.xaml.cs">
       <DependentUpon>Factor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FinalFactor.xaml.cs">
+      <DependentUpon>FinalFactor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FoodCard.xaml.cs">
       <DependentUpon>FoodCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FoodList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,8 +145,14 @@
     <Compile Include="InformationOfRestaurant.xaml.cs">
       <DependentUpon>InformationOfRestaurant.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InformationSearch.xaml.cs">
+      <DependentUpon>InformationSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MoreInformation.xaml.cs">
       <DependentUpon>MoreInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NameSearch.xaml.cs">
+      <DependentUpon>NameSearch.xaml</DependentUpon>
     </Compile>
     <Compile Include="Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
@@ -154,6 +164,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>peopleDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PriceSearch.xaml.cs">
+      <DependentUpon>PriceSearch.xaml</DependentUpon>
     </Compile>
     <Compile Include="Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
@@ -220,11 +233,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FinalFactor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FoodCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InformationOfRestaurant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InformationSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NameSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Orders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -253,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PriceSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
