@@ -25,7 +25,11 @@ namespace Joojizza
         public InformationOfRestaurant()
         {
             InitializeComponent();
-            
+            if(MainWindow.position == "user")
+            {
+                edit.Visibility = Visibility.Hidden;
+                changePicture.Visibility = Visibility.Hidden;
+            }
 
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
             SqlConnection.Open();

@@ -160,6 +160,9 @@
     <Compile Include="OrderShowing.xaml.cs">
       <DependentUpon>OrderShowing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderShowingAdmin.xaml.cs">
+      <DependentUpon>OrderShowingAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="peopleDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,6 +176,9 @@
     </Compile>
     <Compile Include="RealSignature.xaml.cs">
       <DependentUpon>RealSignature.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RestaurantEconomy.xaml.cs">
+      <DependentUpon>RestaurantEconomy.xaml</DependentUpon>
     </Compile>
     <Compile Include="RestaurantInformation.xaml.cs">
       <DependentUpon>RestaurantInformation.xaml</DependentUpon>
@@ -277,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OrderShowingAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -290,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RealSignature.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RestaurantEconomy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

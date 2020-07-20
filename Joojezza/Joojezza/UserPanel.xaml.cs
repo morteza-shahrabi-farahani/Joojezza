@@ -147,6 +147,17 @@ namespace Joojizza
                     priceSearch.Visibility = Visibility.Visible;
                     break;
                 case 5:
+                    principal.Children.Clear();
+                    foodCard1.Visibility = Visibility.Hidden;
+                    foodCard2.Visibility = Visibility.Hidden;
+                    foodCard3.Visibility = Visibility.Hidden;
+                    next.Visibility = Visibility.Hidden;
+                    previous.Visibility = Visibility.Hidden;
+                    orderShowing.Visibility = Visibility.Hidden;
+                    nameSearch.Visibility = Visibility.Hidden;
+                    priceSearch.Visibility = Visibility.Hidden;
+                    informationSearch.Visibility = Visibility.Hidden;
+                    principal.Children.Add(new InformationOfRestaurant());
                     break;
             }
 

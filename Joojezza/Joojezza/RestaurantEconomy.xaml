@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Joojizza.RestaurantEconomy"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Joojizza"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid ShowGridLines="True" Background="White">
+        <ListView x:Name="listView" Height="430" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" Width="250"/>
+                    <GridViewColumn Header="TotalPrice" DisplayMemberBinding="{Binding Price}" Width="250"/>
+                    <GridViewColumn Header="Benefit" DisplayMemberBinding="{Binding Benefit}" Width="250"/>
+                    
+                    
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+
+</UserControl>

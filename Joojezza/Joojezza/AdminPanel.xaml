@@ -57,15 +57,15 @@
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="TruckDelivery" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-                        <TextBlock Text="Delivery" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
+                        <TextBlock Text="Search" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Cash" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-                        <TextBlock Text="Cash" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Kind="Money" Height="30" Width="30" VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
+                        <TextBlock Text="Benefit" FontSize="17" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
 
@@ -90,7 +90,12 @@
             <Button x:Name="addBtn" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green" Click="addBtn_Click" Margin="712,10,32,505" Visibility="Hidden">
                 <materialDesign:PackIcon Kind="Add" Height="30" Width="30" />
             </Button>
-            <local:OrderShowing x:Name="orderShowing" HorizontalAlignment="Left" Height="535" Margin="10,0,0,0" VerticalAlignment="Top" Width="754"/>
+
+            <Button x:Name="nameSearch" Content="Search by name" Margin="282,146,309,367" Visibility="Hidden" Click="nameSearch_Click"></Button>
+            <Button x:Name="informationSearch" Content="Search by information" Margin="282,240,309,273" Visibility="Hidden" Click="informationSearch_Click"></Button>
+            <Button x:Name="priceSearch" Content="Search by price" Margin="282,333,309,180" Visibility="Hidden" Click="priceSearch_Click"></Button>
+
+            
         </Grid>
     </Grid>
 </Window>

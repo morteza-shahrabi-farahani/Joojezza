@@ -27,6 +27,14 @@ namespace Joojizza
         string cartText = "";
         string imageLocation;
         bool correct = true;
+        double tax;
+        double discount;
+        double finalPrice;
+        double gain;
+        int counter4;
+        bool same = false;
+        int counter5;
+        List<string> lastDates = new List<string>();
         Dictionary<string, int> food = new Dictionary<string, int>();
         Dictionary<string, int> foodNumber = new Dictionary<string, int>();
         Dictionary<string, string> foodDate = new Dictionary<string, string>();
@@ -93,10 +101,105 @@ namespace Joojizza
             }
             else
             {
-                imageLocation = "G:/works/university/AP/Joojezza/Joojezza/logo/signature1111111121.jpg";
+                imageLocation ="G:/works/university/AP/Joojezza/Joojezza/logo/signature1111111121.jpg";
             }
+            tax = CalculateTax();
+            discount = CalculateDiscount();
+            finalPrice = CalculateFinalPrice(totalPrice, tax, discount);
+            pricesTxt.Text = "tax: " + "\n" + tax + "$";
+            pricesTxt.Text = "discount: " + "\n" + discount + "$";
+            pricesTxt.Text = "finalPrice: " + "\n" + finalPrice + "$";
+        }
 
+        private double CalculateFinalPrice(double totalPrice, double tax, double discount)
+        {
+            double finalPrice;
+            finalPrice = (totalPrice + (totalPrice * tax / 100) - (totalPrice * discount / 100));
+            return finalPrice;
+        }
 
+        private double CalculateDiscount()
+        {
+            double discount = 0;
+            int counter = 0;
+            SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            sqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("select * from Orders", sqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                if (sqlDataReader["username"].ToString() == UserLogin.name)
+                {
+                    counter++;
+                }
+            }
+            if (counter < 4)
+            {
+                if(counter == 1)
+                {
+                    discount = 5;
+                }
+                else if(counter == 2)
+                {
+                    discount = 10;
+                }
+                else if(counter == 3)
+                {
+                    discount = 0;
+                }
+                
+            }
+            else if (counter >= 4 && counter < 8)
+            {
+                discount = 5;
+            }
+            else if (counter >= 8 && counter < 12)
+            {
+                discount = 8;
+            }
+            else if (counter >= 12)
+            {
+                discount = 10;
+            }
+            sqlDataReader.Close();
+
+            return discount;
+        }
+
+        private double CalculateTax()
+        {
+            double tax = 0;
+            int counter = 0;
+            SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            sqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("select * from Orders", sqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                if(sqlDataReader["username"].ToString() == UserLogin.name)
+                {
+                    counter++;
+                }
+            }
+            if(counter < 4)
+            {
+                tax = 9;
+            }
+            else if(counter >= 4 && counter < 8)
+            {
+                tax = 7;
+            }
+            else if(counter >= 8 && counter < 12)
+            {
+                tax = 5;
+            }
+            else if(counter >= 12)
+            {
+                tax = 0;
+            }
+            sqlDataReader.Close();
+
+            return tax;
         }
 
         private void reset_Click(object sender, RoutedEventArgs e)
@@ -185,12 +288,14 @@ namespace Joojizza
                     {
                         finalNumber = numbers[counter3].ToString() + " ";
                     }
-                    SqlCommand SqlCommand3 = new SqlCommand("insert into Orders (id, username, payment, date, totalPrice, Time1, Time2, Time3, Time4, information, numberOfFood, today, name, number) values(@id, @username, @payment, @date, @totalPrice, @Time1, @Time2, @Time3, @Time4, @information, @numberOfFood, @today, @name, @number)", SqlConnection);
+
+                    gain = totalPrice - (totalPrice * 100 / 124) - ((discount + tax) * totalPrice);
+                    SqlCommand SqlCommand3 = new SqlCommand("insert into Orders (id, username, payment, date, totalPrice, Time1, Time2, Time3, Time4, information, numberOfFood, today, name, number, gain) values(@id, @username, @payment, @date, @totalPrice, @Time1, @Time2, @Time3, @Time4, @information, @numberOfFood, @today, @name, @number, @gain)", SqlConnection);
                     SqlCommand3.Parameters.Add("@date", UserPanel.date);
                     SqlCommand3.Parameters.Add("@username", UserLogin.name);
                     SqlCommand3.Parameters.Add("@id", counter + 1);
                     SqlCommand3.Parameters.Add("@payment", payment);
-                    SqlCommand3.Parameters.Add("@totalPrice", totalPrice);
+                    SqlCommand3.Parameters.Add("@totalPrice", finalPrice.ToString());
                     SqlCommand3.Parameters.Add("@Time1", UserPanel.clock1);
                     SqlCommand3.Parameters.Add("@Time2", UserPanel.clock2);
                     SqlCommand3.Parameters.Add("@Time3", UserPanel.clock3);
@@ -200,6 +305,7 @@ namespace Joojizza
                     SqlCommand3.Parameters.Add("@today", DateTime.Now.ToString("dd/MM/yyyy"));
                     SqlCommand3.Parameters.Add("@name", finalFood);
                     SqlCommand3.Parameters.Add("@number", finalNumber);
+                    SqlCommand3.Parameters.Add("@gain", gain.ToString());
                     SqlCommand3.ExecuteNonQuery();
 
                     
@@ -224,6 +330,39 @@ namespace Joojizza
                     SqlCommand6.Parameters.Add("@Time3", UserPanel.clock3);
                     SqlCommand6.Parameters.Add("@Time4", UserPanel.clock4);
                     SqlCommand6.ExecuteNonQuery();
+
+                    SqlCommand sqlCommand7 = new SqlCommand("select * from Calculation", SqlConnection);
+                    SqlDataReader sqlDataReader1 = sqlCommand7.ExecuteReader();
+                    while(sqlDataReader1.Read())
+                    {
+                        counter4++;
+                        lastDates.Add(sqlDataReader1["date"].ToString());
+                    }
+                    sqlDataReader1.Close();
+                    
+                    for(counter5 = 0; counter5 < lastDates.Count; counter5++)
+                    {
+                        if (date.Text.ToString() == lastDates[counter5])
+                        {
+                            same = true;
+                        }
+                    }
+                    if (same == false)
+                    {
+                        SqlCommand sqlCommand8 = new SqlCommand("insert into Calculation (benefit, totalPrice, date) values(@benefit, @totalPrice, @date)", SqlConnection);
+                        sqlCommand8.Parameters.Add("@benefit", gain.ToString());
+                        sqlCommand8.Parameters.Add("@totalPrice", finalPrice.ToString());
+                        sqlCommand8.Parameters.Add("@date", date.Text.ToString());
+                        sqlCommand8.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        SqlCommand sqlCommand9 = new SqlCommand("update Calculation set benefit = @benefit, totalPrice = @totalPrice where date = @date", SqlConnection);
+                        sqlCommand9.Parameters.Add("@date", date.Text.ToString());
+                        sqlCommand9.Parameters.Add("@benefit", gain.ToString());
+                        sqlCommand9.Parameters.Add("@totalPrice", finalPrice.ToString());
+                        sqlCommand9.ExecuteNonQuery();
+                    }
 
                     if (payment == "online")
                     {

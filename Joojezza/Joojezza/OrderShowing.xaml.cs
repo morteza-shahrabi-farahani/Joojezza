@@ -67,7 +67,7 @@ namespace Joojizza
                     data.Date = sqlDataReader["date"].ToString();
                     datas.Add(data);
                     string temp2 = sqlDataReader["totalPrice"].ToString();
-                    price = double.Parse(temp2, CultureInfo.InvariantCulture);
+                    price = double.Parse(temp2);
                     this.listView.Items.Add(new OrderData2 { Number = counter, Today = sqlDataReader["today"].ToString(), Price = sqlDataReader["totalPrice"].ToString() + "$", Date = sqlDataReader["date"].ToString() });
                     ids.Add(int.Parse(sqlDataReader["id"].ToString()));
                     counter++;
@@ -227,6 +227,7 @@ namespace Joojizza
 
     public class OrderData2
     {
+        
         public int Number { set; get; }
         public string Today { set; get; }
         public string Date { set; get; }

@@ -21,6 +21,8 @@ namespace Joojizza
     /// </summary>
     public partial class InformationSearch : Window
     {
+        List<FoodList> foodlists = new List<FoodList>();
+
         public InformationSearch()
         {
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace Joojizza
                 {
                     foodList.Time = "22-24";
                 }
-                
+                foodlists.Add(foodList);
                 this.foods.Items.Add(new FoodList { Number = foodList.Number, Name = foodList.Name, Price = foodList.Price, Date = foodList.Date, Information = foodList.Information, Time = foodList.Time, Type = foodList.Type });
 
             }
@@ -67,7 +69,15 @@ namespace Joojizza
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            int counter;
+            foods.Items.Clear();
+            for (counter = 0; counter < foodlists.Count; counter++)
+            {
+                if (foodlists[counter].Information.ToLower().Contains(txtFilter.Text.ToLower()))
+                {
+                    this.foods.Items.Add(new FoodList { Number = foodlists[counter].Number, Name = foodlists[counter].Name, Price = foodlists[counter].Price, Date = foodlists[counter].Date, Information = foodlists[counter].Information, Time = foodlists[counter].Time, Type = foodlists[counter].Type });
+                }
+            }
         }
     }
 }

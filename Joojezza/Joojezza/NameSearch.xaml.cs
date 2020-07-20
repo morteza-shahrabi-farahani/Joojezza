@@ -26,10 +26,11 @@ namespace Joojizza
         List<FoodList> foodlists = new List<FoodList>();
         private CollectionViewSource foodCollection;
         public event PropertyChangedEventHandler PropertyChanged;
-        private string filterString;
+        
         public NameSearch()
         {
             InitializeComponent();
+            
             FillList();
         }
 
@@ -68,53 +69,37 @@ namespace Joojizza
                 }
                 foodlists.Add(foodList);
                 this.foods.Items.Add(new FoodList { Number = foodList.Number, Name = foodList.Name, Price = foodList.Price, Date = foodList.Date, Information = foodList.Information, Time = foodList.Time, Type = foodList.Type });
-
                 
             }
-            foodCollection = new CollectionViewSource();
-            foodCollection.Source = names;
-            foodCollection.Filter += foodCollection_Filter;
+
         }
 
 
-
-        public ICollectionView SourceCollection
+        private void FoodFilter(object item)
         {
-            get
-            {
-                return this.foodCollection.View;
-            }
-        }
-
-        public string FilterText
-        {
-            get
-            {
-                return filterText;
-            }
-            set
-            {
-                filterText = value;
-                this.foodCollection.View.Refresh();
-                RaisePropertyChanged("FilterText");
-            }
-        }
-
-        private bool FoodFilter(object item)
-        {
-            if(String.IsNullOrEmpty(txtFilter.Text))
+            /*if(String.IsNullOrEmpty(txtFilter.Text))
             {
                 return true;
             }
             else
             {
                 return ((item as FoodList).Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-            }
+            }*/
+
+            
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(foods.ItemsSource).Refresh();
+            int counter;
+            foods.Items.Clear();
+            for(counter = 0; counter < foodlists.Count; counter++)
+            {
+                if(foodlists[counter].Name.ToLower().Contains(txtFilter.Text.ToLower()))
+                {
+                    this.foods.Items.Add(new FoodList { Number = foodlists[counter].Number, Name = foodlists[counter].Name, Price = foodlists[counter].Price, Date = foodlists[counter].Date, Information = foodlists[counter].Information, Time = foodlists[counter].Time, Type = foodlists[counter].Type });
+                }
+            }
         }
     }
 }
