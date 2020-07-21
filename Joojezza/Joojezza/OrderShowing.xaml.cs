@@ -41,6 +41,7 @@ namespace Joojizza
         double price;
         double depositPrice;
         double cashPrice;
+        double gain;
         public OrderShowing()
         {
             InitializeComponent();
@@ -68,6 +69,7 @@ namespace Joojizza
                     datas.Add(data);
                     string temp2 = sqlDataReader["totalPrice"].ToString();
                     price = double.Parse(temp2);
+                    gain = double.Parse(sqlDataReader["gain"].ToString());
                     this.listView.Items.Add(new OrderData2 { Number = counter, Today = sqlDataReader["today"].ToString(), Price = sqlDataReader["totalPrice"].ToString() + "$", Date = sqlDataReader["date"].ToString() });
                     ids.Add(int.Parse(sqlDataReader["id"].ToString()));
                     counter++;
@@ -174,7 +176,27 @@ namespace Joojizza
                     sqlCommand3.Parameters.Add("@number", (number[counter] + firstNumbers[counter]));
                     sqlCommand3.ExecuteNonQuery();
                 }
-                sqlConnection3.Close();
+
+
+                double benefit = 0;
+                double totalPrice = 0;
+                SqlCommand sqlCommand = new SqlCommand("select * from Calculation", sqlConnection3);
+                SqlDataReader sqlDataReader1 = sqlCommand.ExecuteReader();
+                while(sqlDataReader1.Read())
+                {
+                    if(sqlDataReader1["date"].ToString() == date)
+                    {
+                        benefit = double.Parse(sqlDataReader1["benefit"].ToString());
+                        totalPrice = double.Parse(sqlDataReader1["totalPrice"].ToString());
+                    }
+                }
+                sqlDataReader1.Close();
+
+                SqlCommand sqlCommand1 = new SqlCommand("update Calculation set benefit = @benefit, totalPrice = @totalPrice where date = @date", sqlConnection3);
+                sqlCommand1.Parameters.Add("@date", date);
+                sqlCommand1.Parameters.Add("@totalPrice", (totalPrice - price).ToString());
+                sqlCommand1.Parameters.Add("@benefit", (benefit - gain).ToString());
+                sqlCommand1.ExecuteNonQuery();
 
                 depositPrice = price * 9 / 10;
                 cashPrice = price - depositPrice;
@@ -182,7 +204,7 @@ namespace Joojizza
                 {
                     if (payment == "online")
                     {
-                        MessageBox.Show("We dwposit " + depositPrice + " to your account", " ", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("We deposit " + depositPrice + " to your account", " ", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else if (payment == "presence")
                     {

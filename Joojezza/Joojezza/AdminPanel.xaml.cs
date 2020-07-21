@@ -31,6 +31,7 @@ namespace Joojizza
         int number = 0;
         int set = 0;
         int clicking = 0;
+        int counter2 = 0;
         public AdminPanel()
         {
             InitializeComponent();
@@ -144,9 +145,18 @@ namespace Joojizza
         private void FoodShowing()
         {
             set = 0;
+            
             addBtn.Visibility = Visibility.Visible;
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
             SqlConnection.Open();
+            SqlCommand sqlCommand2 = new SqlCommand("select * from Cart", SqlConnection);
+            SqlDataReader sqlDataReader2 = sqlCommand2.ExecuteReader();
+            while (sqlDataReader2.Read())
+            {
+                counter2++;
+            }
+            sqlDataReader2.Close();
+
             SqlCommand sqlCommand = new SqlCommand("select * from Food", SqlConnection);
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             addBtn.Visibility = Visibility.Visible;
@@ -226,7 +236,12 @@ namespace Joojizza
                     }
                 }
 
-                
+                number = 0;
+            }
+
+            if (set == counter2 / 3)
+            {
+                next.IsEnabled = false;
             }
         }
 

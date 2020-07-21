@@ -7,9 +7,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
         Title="NameSearch" Height="450" Width="800" ResizeMode="NoResize">
-    <DockPanel Margin="10">
+    <DockPanel Margin="10,10,9.6,8">
         <TextBox DockPanel.Dock="Top" Margin="0,0,0,10" Name="txtFilter" TextChanged="txtFilter_TextChanged" materialDesign:HintAssist.Hint="Food name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <ListView Name="foods" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="False">
+        <ListView Name="foods" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="False" Margin="0,0,0,55">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
@@ -22,5 +22,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="Rate" Content="Rate" Height="36" VerticalAlignment="Top" Width="75" Margin="-800,309,-50,0" Click="Rate_Click"/>
     </DockPanel>
+
 </Window>

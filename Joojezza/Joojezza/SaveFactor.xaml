@@ -26,13 +26,17 @@
             </StackPanel>
         </StackPanel>
         <Border CornerRadius="15" Margin="240,60,10,-398.4" BorderBrush="Black" BorderThickness="5">
-            <StackPanel Orientation="Vertical" Margin="10,10,10,9.6">
-                <StackPanel Orientation="Horizontal" Height="35" Margin="0,0,-0.2,0">
-                    <TextBlock x:Name="today" Margin="10,0,0,0" Width="226"></TextBlock>
-                    <TextBlock x:Name="date" Margin="10,0,10,0" Width="215"></TextBlock>
+            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <StackPanel Orientation="Vertical" Margin="10,10,10,9.6">
+                    <StackPanel Orientation="Horizontal" Height="35" Margin="0,0,-0.2,0">
+                        <TextBlock x:Name="today" Margin="10,0,0,0" Width="226"></TextBlock>
+                        <TextBlock x:Name="date" Margin="10,0,10,0" Width="215"></TextBlock>
+                    </StackPanel>
+
+                    <TextBlock x:Name="informationTxt" Margin="10,10,10.4,10" Text="Information" TextWrapping="Wrap"></TextBlock>
+
                 </StackPanel>
-                <TextBlock x:Name="informationTxt" Height="385" Margin="10,10,10.4,10" Text="Information" TextWrapping="Wrap"></TextBlock>
-            </StackPanel>
+            </ScrollViewer>
         </Border>
     </Grid>
 </Window>

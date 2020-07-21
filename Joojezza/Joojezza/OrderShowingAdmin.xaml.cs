@@ -40,6 +40,9 @@ namespace Joojizza
         double price;
         double depositPrice;
         double cashPrice;
+        double totalPrice;
+        double gain;
+        string username;
         public OrderShowingAdmin()
         {
             InitializeComponent();
@@ -66,7 +69,7 @@ namespace Joojizza
                 data.Gain = sqlDataReader["gain"].ToString();
                 datas.Add(data);
                 string temp2 = sqlDataReader["totalPrice"].ToString();
-                price = double.Parse(temp2, CultureInfo.InvariantCulture);
+                price = double.Parse(temp2);
                 this.listView.Items.Add(new OrderData3 { Number = counter, Today = sqlDataReader["today"].ToString(), Price = sqlDataReader["totalPrice"].ToString() + "$", Date = sqlDataReader["date"].ToString(), Gain = sqlDataReader["gain"].ToString() });
                 ids.Add(int.Parse(sqlDataReader["id"].ToString()));
                 counter++;
@@ -100,6 +103,9 @@ namespace Joojizza
                     time2 = sqlDataReader["Time2"].ToString();
                     time3 = sqlDataReader["Time3"].ToString();
                     time4 = sqlDataReader["Time4"].ToString();
+                    username = sqlDataReader["username"].ToString();
+                    gain = double.Parse(sqlDataReader["gain"].ToString());
+                    totalPrice = double.Parse(sqlDataReader["totalPrice"].ToString());
                     payment = sqlDataReader["payment"].ToString();
                     orderDate = sqlDataReader["date"].ToString().Split('/');
                     today = DateTime.Now.ToString("dd/MM/yyyy").Split('/');
@@ -140,8 +146,9 @@ namespace Joojizza
 
             if (correct)
             {
-                SqlCommand sqlCommand2 = new SqlCommand("Delete from Orders where id = @id", sqlConnection2);
+                SqlCommand sqlCommand2 = new SqlCommand("Delete from Orders where id = @id And totalPrice = @totalPrice", sqlConnection2);
                 sqlCommand2.Parameters.Add("@id", FinalID);
+                sqlCommand2.Parameters.Add("@totalPrice", totalPrice.ToString());
                 sqlCommand2.ExecuteNonQuery();
                 sqlConnection2.Close();
 
@@ -153,7 +160,7 @@ namespace Joojizza
                 {
                     for (counter = 0; counter < names.Count; counter++)
                     {
-                        if (names[counter] == (sqlDataReader4["name"].ToString() + " ") && date == sqlDataReader4["date"].ToString() && time1 == sqlDataReader4["Time1"].ToString() && time2 == sqlDataReader4["Time2"].ToString() && time3 == sqlDataReader4["Time3"].ToString() && time4 == sqlDataReader4["Time4"].ToString())
+                        if ((names[counter] == (sqlDataReader4["name"].ToString() + " ") || names[counter] == (sqlDataReader4["name"].ToString())) && date == sqlDataReader4["date"].ToString() && time1 == sqlDataReader4["Time1"].ToString() && time2 == sqlDataReader4["Time2"].ToString() && time3 == sqlDataReader4["Time3"].ToString() && time4 == sqlDataReader4["Time4"].ToString())
                         {
                             firstNumbers.Add(int.Parse(sqlDataReader4["number"].ToString()));
                         }
@@ -173,7 +180,26 @@ namespace Joojizza
                     sqlCommand3.Parameters.Add("@number", (number[counter] + firstNumbers[counter]));
                     sqlCommand3.ExecuteNonQuery();
                 }
-                sqlConnection3.Close();
+
+                double benefit = 0;
+                double totalPrice2 = 0;
+                SqlCommand sqlCommand = new SqlCommand("select * from Calculation", sqlConnection3);
+                SqlDataReader sqlDataReader1 = sqlCommand.ExecuteReader();
+                while (sqlDataReader1.Read())
+                {
+                    if (sqlDataReader1["date"].ToString() == date)
+                    {
+                        benefit = double.Parse(sqlDataReader1["benefit"].ToString());
+                        totalPrice = double.Parse(sqlDataReader1["totalPrice"].ToString());
+                    }
+                }
+                sqlDataReader1.Close();
+
+                SqlCommand sqlCommand1 = new SqlCommand("update Calculation set benefit = @benefit, totalPrice = @totalPrice where date = @date", sqlConnection3);
+                sqlCommand1.Parameters.Add("@date", date);
+                sqlCommand1.Parameters.Add("@totalPrice", (totalPrice2 - price).ToString());
+                sqlCommand1.Parameters.Add("@benefit", (benefit - gain).ToString());
+                sqlCommand1.ExecuteNonQuery();
 
                 depositPrice = price * 9 / 10;
                 cashPrice = price - depositPrice;
@@ -190,7 +216,11 @@ namespace Joojizza
                 }
                 else
                 {
-
+                    SqlCommand sqlCommand5 = new SqlCommand("insert into Message (name, message) values(@name, @message)", sqlConnection3);
+                    sqlCommand5.Parameters.Add("@name", name);
+                    sqlCommand5.Parameters.Add("@message", "Your order is being canceled by admin. We return " + totalPrice.ToString() + " to your account.");
+                    sqlCommand5.ExecuteNonQuery();
+                    sqlConnection3.Close();
                 }
             }
             else

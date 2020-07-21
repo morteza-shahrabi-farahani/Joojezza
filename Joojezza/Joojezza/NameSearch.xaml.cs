@@ -101,5 +101,10 @@ namespace Joojizza
                 }
             }
         }
+
+        private void Rate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -26,6 +26,7 @@
                 <ComboBoxItem Content="Iranian food"/>
                 <ComboBoxItem Content="Dessert"/>
                 <ComboBoxItem Content="Drinks"/>
+                <ComboBoxItem Content="Appetizer"/>
             </ComboBox>
             <TextBox x:Name="ChiefTxt" materialDesign:HintAssist.Hint="Chief" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 5" Height="44" FontSize="13"/>
         </StackPanel>

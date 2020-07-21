@@ -56,8 +56,16 @@ namespace Joojizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            var signaturePath = "G:/works/university/AP/Joojezza/Joojezza/logo/signature" + UserLogin.id + ".jpg";
+            int id = 0;
+            SqlConnection sqlConnection3 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            sqlConnection3.Open();
+            SqlCommand SqlCommand4 = new SqlCommand("select * from Other", sqlConnection3);
+            SqlDataReader sqlDataReader4 = SqlCommand4.ExecuteReader();
+            while (sqlDataReader4.Read())
+            {
+                id = (int.Parse(sqlDataReader4["id"].ToString()) + 1);
+            }
+            var signaturePath = "G:/works/university/AP/Joojezza/Joojezza/logo/signature" + UserLogin.id + id.ToString() + ".jpg";
             FileStream fileStream = new FileStream(signaturePath, FileMode.Create);
             RenderTargetBitmap temp = new RenderTargetBitmap((int)canvas.Width, (int)canvas.Height, 96, 96, PixelFormats.Default);
             temp.Render(canvas);
@@ -73,6 +81,10 @@ namespace Joojizza
             sqlCommand.Parameters.Add("@cardNumber", cardTxt.Text.ToString());
             sqlCommand.Parameters.Add("@signature", signaturePath);
             sqlCommand.ExecuteNonQuery();
+
+            SqlCommand sqlCommand2 = new SqlCommand("update Other set id = @id", sqlConnection);
+            sqlCommand2.Parameters.Add("@id", id + 1);
+            sqlCommand2.ExecuteNonQuery();
             sqlConnection.Close();
 
             SaveFactor saveFactor = new SaveFactor();

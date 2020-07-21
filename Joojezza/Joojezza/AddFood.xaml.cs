@@ -72,7 +72,7 @@ namespace Joojizza
                     foodCounter++;
                 }
 
-                counter++;
+                counter = int.Parse(sqlDataReader["id"].ToString());
             }
 
             
@@ -125,7 +125,31 @@ namespace Joojizza
                             }
                             else
                             {
-                                sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png");
+                                if(type == "Fast food")
+                                {
+                                    sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/hamburger.png");
+                                }
+                                else if(type == "Iranian food")
+                                {
+                                    sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/jooje.png");
+                                }
+                                else if(type == "Drinks")
+                                {
+                                    sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/soda.png");
+                                }
+                                else if(type == "Dessert")
+                                {
+                                    sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/salad.png");
+                                }
+                                else if(type == "Appetizer")
+                                {
+                                    sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/soup.png");
+                                }
+                                else
+                                {
+                                    sqlCommand2.Parameters.Add("@imageFile", "G:/works/university/AP/Joojezza/Joojezza/logo/logo.png");
+                                }
+                                
                             }
                             sqlCommand2.Parameters.Add("@chief", ChiefTxt.Text);
                             sqlCommand2.Parameters.Add("@id", counter + 1);

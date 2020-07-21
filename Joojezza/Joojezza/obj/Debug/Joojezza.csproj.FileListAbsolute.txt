@@ -96,3 +96,5 @@ G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\bin\Debug\Joojizza.ex
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\bin\Debug\Joojizza.exe
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\bin\Debug\Joojizza.pdb
 G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Joojezza.csprojAssemblyReference.cache
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Rating.g.cs
+G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\obj\Debug\Rating.baml

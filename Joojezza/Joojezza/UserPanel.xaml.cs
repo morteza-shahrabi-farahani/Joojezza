@@ -31,13 +31,37 @@ namespace Joojizza
         public static bool cart { set; get; }
         bool same = false;
         int number = 0;
+        int numberCart = 0;
         int set = 0;
         int clicking = 0;
         public static List<string> names = new List<string>();
+        int counter, counter2;
         public UserPanel()
         {
             InitializeComponent();
             cart = false;
+            CheckMessage();
+        }
+
+        private void CheckMessage()
+        {
+            SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            sqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("select * from Message", sqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while(sqlDataReader.Read())
+            {
+                if(UserLogin.name == sqlDataReader["name"].ToString())
+                {
+                    MessageBox.Show(sqlDataReader["message"].ToString(), "New message", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            sqlDataReader.Close();
+
+            SqlCommand sqlCommand1 = new SqlCommand("Delete from Message where name = @name", sqlConnection);
+            sqlCommand1.Parameters.Add("@name", UserLogin.name);
+            sqlCommand1.ExecuteNonQuery();
+            sqlConnection.Close();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -73,6 +97,7 @@ namespace Joojizza
                     break;
                 case 1:
                     cart = false;
+                    
                     principal.Children.Clear();
                     foodCard1.Visibility = Visibility.Hidden;
                     foodCard2.Visibility = Visibility.Hidden;
@@ -97,6 +122,7 @@ namespace Joojizza
                     break;
                 case 2:
                     cart = true;
+                    
                     principal.Children.Clear();
                     foodCard1.Visibility = Visibility.Hidden;
                     foodCard2.Visibility = Visibility.Hidden;
@@ -108,16 +134,9 @@ namespace Joojizza
                     nameSearch.Visibility = Visibility.Hidden;
                     informationSearch.Visibility = Visibility.Hidden;
                     priceSearch.Visibility = Visibility.Hidden;
-                    if (date == "" || (clock1 == 0 && clock2 == 0 && clock3 == 0 && clock4 == 0))
-                    {
-                        principal.Children.Clear();
-                        MessageBox.Show("First you have to choose date and time", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        cart = true;
-                        CartShowing();
-                    }
+                    cart = true;
+                    CartShowing();
+                    
                     break;
                 case 3:
                     principal.Children.Clear();
@@ -163,20 +182,32 @@ namespace Joojizza
 
             }
 
-        private void Signature()
-        {
-            
-        }
 
         private void CartShowing()
         {
+            counter2 = 0;
             set = 0;
+            counter = 0;
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
             SqlConnection.Open();
+            SqlCommand sqlCommand2 = new SqlCommand("select * from Cart", SqlConnection);
+            SqlDataReader sqlDataReader2 = sqlCommand2.ExecuteReader();
+            while (sqlDataReader2.Read())
+            {
+                if(sqlDataReader2["username"].ToString() == UserLogin.name)
+                {
+                    counter2++;
+                }
+                
+            }
+            sqlDataReader2.Close();
+
             SqlCommand sqlCommand = new SqlCommand("select * from Cart", SqlConnection);
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read())
             {
+                
+                counter++;
                 if (clicking != 0)
                 {
                     previous.IsEnabled = true;
@@ -189,7 +220,7 @@ namespace Joojizza
                 {
                     next.IsEnabled = true;
                 }
-                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 0)
+                if (sqlDataReader["username"].ToString() == UserLogin.name && numberCart == 0)
                 {
                     same = true;
                     foodCard1.numberTxt.Text = sqlDataReader["number"].ToString();
@@ -199,12 +230,16 @@ namespace Joojizza
                     foodCard1.typeTxt.Content = sqlDataReader["type"].ToString();
                     foodCard1.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard1.Visibility = Visibility.Visible;
-                    number++;
-                    
+                    numberCart++;
+                    if (counter == counter2)
+                    {
+                        foodCard2.Visibility = Visibility.Hidden;
+                        foodCard3.Visibility = Visibility.Hidden;
+                    }
                     continue;
                 }
 
-                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 1)
+                if (sqlDataReader["username"].ToString() == UserLogin.name && numberCart == 1)
                 {
                     same = true;
                     foodCard2.numberTxt.Text = sqlDataReader["number"].ToString();
@@ -214,13 +249,16 @@ namespace Joojizza
                     foodCard2.typeTxt.Content = sqlDataReader["type"].ToString();
                     foodCard2.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard2.Visibility = Visibility.Visible;
-                    number++;
-
+                    numberCart++;
+                    if (counter == counter2)
+                    {
+                        foodCard3.Visibility = Visibility.Hidden;
+                    }
                     continue;
 
                 }
 
-                if (sqlDataReader["date"].ToString() == Date.choosenDate && (sqlDataReader[1].ToString() == clock1.ToString() || sqlDataReader["Time2"].ToString() == clock2.ToString() || sqlDataReader["Time3"].ToString() == clock3.ToString() || sqlDataReader["Time4"].ToString() == clock4.ToString()) && number == 2)
+                if (sqlDataReader["username"].ToString() == UserLogin.name && numberCart == 2)
                 {
                     same = true;
                     foodCard3.numberTxt.Text = sqlDataReader["number"].ToString();
@@ -232,7 +270,7 @@ namespace Joojizza
                     foodCard3.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard3.Visibility = Visibility.Visible;
                     
-                    number = 0;
+                    numberCart = 0;
                     set++;
                     next.Visibility = Visibility.Visible;
                     next.IsEnabled = true;
@@ -253,8 +291,11 @@ namespace Joojizza
                         previous.IsEnabled = false;
                     }
                 }
-                number = 0;
+                numberCart = 0;
             }
+
+            
+            counter = 0;
         }
           
 
@@ -273,13 +314,24 @@ namespace Joojizza
 
         private void FoodShowing()
         {
+            counter2 = 0;
             set = 0;
+            counter = 0;
             SqlConnection SqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
             SqlConnection.Open();
+            SqlCommand sqlCommand2 = new SqlCommand("select * from Food", SqlConnection);
+            SqlDataReader sqlDataReader2 = sqlCommand2.ExecuteReader();
+            while (sqlDataReader2.Read())
+            {
+                counter2++;
+            }
+            sqlDataReader2.Close();
+
             SqlCommand sqlCommand = new SqlCommand("select * from Food", SqlConnection);
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read())
             {
+                counter++;
                 if (clicking != 0)
                 {
                     previous.IsEnabled = true;
@@ -303,6 +355,11 @@ namespace Joojizza
                     foodCard1.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard1.Visibility = Visibility.Visible;
                     number++;
+                    if (counter == counter2)
+                    {
+                        foodCard2.Visibility = Visibility.Hidden;
+                        foodCard3.Visibility = Visibility.Hidden;
+                    }
                     continue;
                 }
 
@@ -317,6 +374,11 @@ namespace Joojizza
                     foodCard2.foodImage1.Source = new BitmapImage(new Uri(sqlDataReader["imageFile"].ToString()));
                     foodCard2.Visibility = Visibility.Visible;
                     number++;
+                    if (counter == counter2)
+                    {
+                        
+                        foodCard3.Visibility = Visibility.Hidden;
+                    }
                     continue;
 
                 }
@@ -357,6 +419,8 @@ namespace Joojizza
 
             }
             number = 0;
+            
+            counter = 0;
         }
 
         private void next_Click(object sender, RoutedEventArgs e)
@@ -378,6 +442,7 @@ namespace Joojizza
         {
             clicking--;
             number = 0;
+            numberCart = 0;
             next.IsEnabled = true;
             if (cart == false)
             {

@@ -25,6 +25,7 @@ namespace Joojizza
     public partial class BankAccount : UserControl
     {
         System.Windows.Point current;
+        int counter = 0;
         public BankAccount()
         {
             InitializeComponent();
@@ -58,7 +59,22 @@ namespace Joojizza
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            var signaturePath = "G:/works/university/AP/Joojezza/Joojezza/logo/signature" + UserLogin.id + ".jpg";
+            SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
+            sqlConnection.Open();
+            SqlCommand sqlCommand1 = new SqlCommand("select * from Other", sqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand1.ExecuteReader();
+            while(sqlDataReader.Read())
+            {
+                counter = int.Parse(sqlDataReader["id"].ToString());
+            }
+            counter++;
+            if(counter == 1)
+            {
+                counter = 100;
+            }
+            sqlDataReader.Close();
+
+            var signaturePath = "G:/works/university/AP/Joojezza/Joojezza/logo/signature" + UserLogin.id + counter + ".jpg";
             FileStream fileStream = new FileStream(signaturePath, FileMode.Create);
             RenderTargetBitmap temp = new RenderTargetBitmap((int)canvas.Width, (int)canvas.Height, 96, 96, PixelFormats.Default);
             temp.Render(canvas);
@@ -67,13 +83,15 @@ namespace Joojizza
             jpegBitmapEncoder.Save(fileStream);    
             fileStream.Close();
 
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\works\university\AP\Joojezza\Joojezza\Joojezza\Joojezza\users.mdf;Integrated Security=True");
-            sqlConnection.Open();
+            
             SqlCommand sqlCommand = new SqlCommand("update Cart set signature = @signature, cardNumber = @cardNumber where userID = @userID", sqlConnection);
             sqlCommand.Parameters.Add("@userId", UserLogin.id.ToString());
             sqlCommand.Parameters.Add("@cardNumber", cardTxt.Text.ToString());
             sqlCommand.Parameters.Add("@signature", signaturePath);
             sqlCommand.ExecuteNonQuery();
+
+            SqlCommand sqlCommand2 = new SqlCommand("update Other set id = @id", sqlConnection);
+            sqlCommand2.Parameters.Add("@id", counter);
             sqlConnection.Close();
         }
 

@@ -37,26 +37,53 @@ namespace Joojizza
             SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
             while (sqlDataReader.Read())
             {
-                if (OrderShowing.FinalID.ToString() == sqlDataReader["id"].ToString())
+                if (MainWindow.position == "user")
                 {
-
-                    nameTxt.Text = sqlDataReader["username"].ToString();
-                    today.Text = "Today: " + sqlDataReader["today"].ToString();
-                    date.Text = "Delivery date: " + sqlDataReader["date"].ToString();
-                    nameTxt.Text = UserLogin.name;
-                    pricesTxt.Text = sqlDataReader["totalPrice"].ToString();
-                    imageLocation = sqlDataReader["imageFile"].ToString();
-                    informationTxt.Text = sqlDataReader["information"].ToString();
-                    if(sqlDataReader["payment"].ToString() == "online")
+                    if (OrderShowing.FinalID.ToString() == sqlDataReader["id"].ToString())
                     {
-                        checkTxt.Text = "Online";
-                    }
-                    else if(sqlDataReader["payment"].ToString() == "Presence")
-                    {
-                        checkTxt.Text = "Presence";
-                    }
 
-                    image.Source = new BitmapImage(new Uri(imageLocation));
+                        nameTxt.Text = sqlDataReader["username"].ToString();
+                        today.Text = "Today: " + sqlDataReader["today"].ToString();
+                        date.Text = "Delivery date: " + sqlDataReader["date"].ToString();
+                        nameTxt.Text = UserLogin.name;
+                        pricesTxt.Text = "Final price: " + sqlDataReader["totalPrice"].ToString() + "$"; ;
+                        imageLocation = sqlDataReader["imageFile"].ToString();
+                        informationTxt.Text = sqlDataReader["information"].ToString();
+                        if (sqlDataReader["payment"].ToString() == "online")
+                        {
+                            checkTxt.Text = "Online";
+                        }
+                        else if (sqlDataReader["payment"].ToString() == "Presence")
+                        {
+                            checkTxt.Text = "Presence";
+                        }
+
+                        image.Source = new BitmapImage(new Uri(imageLocation));
+                    }
+                }
+                else if(MainWindow.position == "admin")
+                {
+                    if (OrderShowingAdmin.FinalID.ToString() == sqlDataReader["id"].ToString())
+                    {
+
+                        nameTxt.Text = sqlDataReader["username"].ToString();
+                        today.Text = "Today: " + sqlDataReader["today"].ToString();
+                        date.Text = "Delivery date: " + sqlDataReader["date"].ToString();
+                        nameTxt.Text = UserLogin.name;
+                        pricesTxt.Text = "Final price: " + sqlDataReader["totalPrice"].ToString() + "$";
+                        imageLocation = sqlDataReader["imageFile"].ToString();
+                        informationTxt.Text = sqlDataReader["information"].ToString();
+                        if (sqlDataReader["payment"].ToString() == "online")
+                        {
+                            checkTxt.Text = "Online";
+                        }
+                        else if (sqlDataReader["payment"].ToString() == "presence")
+                        {
+                            checkTxt.Text = "Presence";
+                        }
+
+                        image.Source = new BitmapImage(new Uri(imageLocation));
+                    }
                 }
 
             }
